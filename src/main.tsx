@@ -10,14 +10,14 @@ import {
 import Layout from "./layout/Layout";
 import App from "./app/App";
 import "../src/styles/index.css";
+import Scenarios from "./pages/Scenarios";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />} errorElement={""}>
       <Route errorElement={""}>
         <Route index element={<App />} />
-        {/* Compléter le router avec d'autres pages à partir de là*/}
-        {/* Oubliez pas d'ajouter Outlet dans le composant Layout*/}
+        <Route path="/scenarios" element={<Scenarios />} />
       </Route>
     </Route>
   )

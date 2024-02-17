@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function App() {
   return (
     <main className="app">
@@ -10,7 +12,9 @@ export default function App() {
           enseignants, mais vous ne savez pas comment vous y prendre ? Alors
           l’application en ligne « ABC Learning » peuvent vous aider.
         </p>
-        <button className="btn btn-sm m-auto">Créer un nouveau scénario</button>
+        <Link to={"/scenarios"} className="btn btn-sm m-auto">
+          Créer un nouveau scénario
+        </Link>
       </div>
     </main>
   );

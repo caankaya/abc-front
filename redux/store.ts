@@ -1,10 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore } from "@reduxjs/toolkit";
 
-import homeReducer from './reducers/home';
+import headerReducer from "./reducers/header";
 
 const store = configureStore({
   reducer: {
-    home: homeReducer,
+    header: headerReducer,
   },
 });
 

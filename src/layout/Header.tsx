@@ -20,7 +20,7 @@ export default function Header() {
 
   return (
     <header className="header">
-      <div className="navbar bg-base-100">
+      <div className="navbar bg-base-100 max-md:flex max-md:justify-around">
         <div className="flex-1">
           <div className="w-26">
             <Link to={"/"}>
@@ -48,6 +48,7 @@ export default function Header() {
             </a>
           </li>
         </ul>
+        {/* Boutton burger */}
         <button
           type="button"
           className="lg:focus:outline-none flex flex-col mb-2 ml-10"
@@ -71,37 +72,34 @@ export default function Header() {
             }`}
           ></span>
         </button>
+        {/* Menu déroulant */}
         <div
-          className={`p-2 bg-base-100 rounded-box shadow w-52 absolute top-16 right-5 ${
+          className={`p-2 bg-base-100 rounded-box shadow w-52 absolute top-16 right-5 flex-col ${
             isOpen ? "visible" : "hidden"
           }`}
         >
           <ul>
             <li>
-              <a className="btn btn-sm btn-ghost btn-block">Se connecter</a>
+              <a className="btn btn-sm btn-ghost w-[180px]">Se connecter</a>
             </li>
-            {windowWidth < 768 && (
-              <>
-                <li>
-                  <a
-                    className="btn btn-sm btn-ghost btn-block"
-                    href="https://moodletoolguide.net/fr/"
-                    target="_blank"
-                  >
-                    Guide des outils Moodle
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className="btn btn-sm btn-ghost btn-block"
-                    href="https://h5p.org/content-types-and-applications"
-                    target="_blank"
-                  >
-                    Exemples H5P
-                  </a>
-                </li>
-              </>
-            )}
+            <li className={`${windowWidth < 768 ? "visible" : "hidden"}`}>
+              <a
+                className="btn btn-sm btn-ghost btn-block"
+                href="https://moodletoolguide.net/fr/"
+                target="_blank"
+              >
+                Guide des outils Moodle
+              </a>
+            </li>
+            <li className={`${windowWidth < 768 ? "visible" : "hidden"}`}>
+              <a
+                className="btn btn-sm btn-ghost btn-block"
+                href="https://h5p.org/content-types-and-applications"
+                target="_blank"
+              >
+                Exemples H5P
+              </a>
+            </li>
           </ul>
         </div>
       </div>

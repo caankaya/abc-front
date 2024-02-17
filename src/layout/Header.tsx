@@ -19,15 +19,17 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="header">
-      <div className="navbar bg-base-100 max-md:flex max-md:justify-around">
+    <header className="header ">
+      <div className="navbar max-md:flex max-md:justify-around bg-base-300 items-center">
         <div className="flex-1">
           <div className="w-26">
             <Link to={"/"}>
-              <img src="/src/assets/logo.png" alt="" width={100} />
+              <img src="/src/assets/logo.png" alt="" width={100} height={50} />
             </Link>
           </div>
-          <p className="text-sm ml-5 text-center">Création de scénario</p>
+          <p className="text-sm ml-5 text-center">
+            Création de scénario d'apprentissage
+          </p>
         </div>
         <ul
           className={`menu menu-horizontal px-1 ${

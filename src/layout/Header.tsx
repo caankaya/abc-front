@@ -4,10 +4,12 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { togglerDropdown } from "../../redux/reducers/header";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import LoginModal from "../components/LoginModal";
 
 export default function Header() {
   const dispatch = useAppDispatch();
   const isOpen = useAppSelector((state) => state.header.buttonBurger);
+  const openModal = useAppSelector((state) => state.header.loginModal);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
@@ -82,7 +84,14 @@ export default function Header() {
         >
           <ul>
             <li>
-              <a className="btn btn-sm btn-ghost w-[180px]">Se connecter</a>
+              <a
+                className="btn btn-sm btn-ghost w-[180px]"
+                onClick={() =>
+                  document.getElementById("my_modal_3").showModal()
+                }
+              >
+                Se connecter
+              </a>
             </li>
             <li className={`${windowWidth < 768 ? "visible" : "hidden"}`}>
               <a
@@ -105,6 +114,7 @@ export default function Header() {
           </ul>
         </div>
       </div>
+      <LoginModal />
     </header>
   );
 }

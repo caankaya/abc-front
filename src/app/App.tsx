@@ -12,9 +12,14 @@ export default function App() {
           enseignants, mais vous ne savez pas comment vous y prendre ? Alors
           l’application en ligne « ABC Learning » peuvent vous aider.
         </p>
-        <Link to={"/scenarios"} className="btn btn-sm m-auto">
-          Créer un nouveau scénario
-        </Link>
+        <div className="flex justify-center">
+          <Link to={"/scenarios"} className="btn btn-sm m-auto">
+            Créer un nouveau scénario
+          </Link>
+          <Link to={"/scenarios"} className="btn btn-sm m-auto">
+            Voir les scénarios enregistrés
+          </Link>
+        </div>
       </div>
     </main>
   );

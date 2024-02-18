@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useAppSelector } from "../../commons/redux";
 
 export default function App() {
-  const isLogged = useAppSelector((state) => state.user.logged);
+  const user = useAppSelector((state) => state.user.logged);
 
   return (
     <main className="app">
@@ -16,7 +16,7 @@ export default function App() {
           l’application en ligne « ABC Learning » peuvent vous aider.
         </p>
         <div className="flex justify-around">
-          {isLogged ? (
+          {user ? (
             <>
               <Link to={"/scenarios"} className="btn btn-sm">
                 Créer un nouveau scénario

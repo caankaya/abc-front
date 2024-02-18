@@ -8,6 +8,7 @@ import LoginModal from "../components/LoginModal";
 
 export default function Header() {
   const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.user.logged);
   const isOpen = useAppSelector((state) => state.header.buttonBurger);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
@@ -82,19 +83,38 @@ export default function Header() {
           }`}
         >
           <ul>
-            <li>
-              <a
-                className="btn btn-sm btn-ghost w-[180px]"
-                onClick={() => {
-                  dispatch(togglerDropdown(false));
-                  (
-                    document.getElementById("my_modal_5") as HTMLDialogElement
-                  )?.showModal();
-                }}
-              >
-                Se connecter
-              </a>
-            </li>
+            {
+              <>
+                {user ? (
+                  <li>
+                    <a
+                      className="btn btn-sm btn-ghost w-[180px]"
+                      onClick={() => {
+                        dispatch(togglerDropdown(false));
+                      }}
+                    >
+                      Déconnexion
+                    </a>
+                  </li>
+                ) : (
+                  <li>
+                    <a
+                      className="btn btn-sm btn-ghost w-[180px]"
+                      onClick={() => {
+                        dispatch(togglerDropdown(false));
+                        (
+                          document.getElementById(
+                            "my_modal_5"
+                          ) as HTMLDialogElement
+                        )?.showModal();
+                      }}
+                    >
+                      Se connecter
+                    </a>
+                  </li>
+                )}
+              </>
+            }
 
             <li className={`${windowWidth < 768 ? "visible" : "hidden"}`}>
               <a

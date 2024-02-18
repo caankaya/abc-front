@@ -1,12 +1,15 @@
 import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 import { createAsyncThunk, createReducer } from "@reduxjs/toolkit";
 
 interface UserState {
   logged: boolean;
+  username: string | null;
 }
 
 const initialState: UserState = {
   logged: false,
+  username: null,
 };
 
 export const login = createAsyncThunk(
@@ -24,6 +27,7 @@ export const login = createAsyncThunk(
 const userReducer = createReducer(initialState, (builder) => {
   builder.addCase(login.fulfilled, (state, action) => {
     state.logged = true;
+    sessionStorage.setItem("token", action.payload.data.accessToken);
   });
 });
 

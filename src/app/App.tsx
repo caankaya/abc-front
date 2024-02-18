@@ -1,9 +1,17 @@
 import { Link } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../commons/redux";
+import { useAppSelector } from "../../commons/redux";
+import { openModal } from "../../commons/functions";
+import { useEffect } from "react";
 
 export default function App() {
-  const dispatch = useAppDispatch();
+  const modal = document.getElementById("my_modal_5");
   const user = useAppSelector((state) => state.user.logged);
+
+  useEffect(() => {
+    if (modal) {
+      return;
+    }
+  }, []);
 
   return (
     <main className="app">
@@ -27,7 +35,16 @@ export default function App() {
               </Link>
             </>
           ) : (
-            <button className="btn btn-sm">Se connecter</button>
+            <>
+              <button
+                className="btn btn-sm"
+                onClick={() => {
+                  openModal();
+                }}
+              >
+                Se connecter
+              </button>
+            </>
           )}
         </div>
       </div>

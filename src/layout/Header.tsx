@@ -106,7 +106,7 @@ export default function Header() {
                       className="btn btn-sm btn-ghost w-[180px]"
                       onClick={() => {
                         dispatch(togglerDropdown(false));
-                        openModal(modal as HTMLDialogElement);
+                        openModal();
                       }}
                     >
                       Se connecter
@@ -137,7 +137,6 @@ export default function Header() {
           </ul>
         </div>
       </div>
-      <LoginModal />
     </header>
   );
 }

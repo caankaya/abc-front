@@ -1,7 +1,17 @@
-export function openModal(modal: HTMLDialogElement) {
-  modal?.showModal();
+export function openModal() {
+  const modalElement = document.getElementById(
+    "my_modal_5"
+  ) as HTMLDialogElement | null;
+  if (modalElement) {
+    modalElement.showModal();
+  }
 }
 
-export function closeModal(modal: HTMLDialogElement) {
-  modal?.close();
+export function closeModal() {
+  const modalElement = document.getElementById(
+    "my_modal_5"
+  ) as HTMLDialogElement | null;
+  if (modalElement) {
+    modalElement.close();
+  }
 }

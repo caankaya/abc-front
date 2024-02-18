@@ -1,25 +1,35 @@
-import axios from "axios"
 import { jwtDecode } from "jwt-decode"
 import { createAsyncThunk, createReducer } from "@reduxjs/toolkit"
+import instance from "../../commons/axios"
 
 interface UserState {
   logged: boolean
+  id: string | null
   username: string | null
+  accessToken: string | null
+  refreshToken: string | null
 }
 
 const initialState: UserState = {
   logged: false,
-  username: null,
+  id: sessionStorage.getItem("id") || null,
+  username: sessionStorage.getItem("username") || null,
+  accessToken: sessionStorage.getItem("accessToken") || null,
+  refreshToken: sessionStorage.getItem("refreshToken") || null,
+}
+
+interface JwtPayload {
+  data: {
+    id: string
+    username: string
+  }
 }
 
 export const login = createAsyncThunk(
   "user/login",
   async (formData: FormData) => {
     const objData = Object.fromEntries(formData)
-    const { data } = await axios.post(
-      "http://localhost:3000/api/log/in",
-      objData,
-    )
+    const { data } = await instance.post("/log/in", objData)
     return data
   },
 )
@@ -27,7 +37,12 @@ export const login = createAsyncThunk(
 const userReducer = createReducer(initialState, (builder) => {
   builder.addCase(login.fulfilled, (state, action) => {
     state.logged = true
-    sessionStorage.setItem("token", action.payload.data.accessToken)
+    const { accessToken, refreshToken } = action.payload.data
+    sessionStorage.setItem("accessToken", accessToken)
+    sessionStorage.setItem("refreshToken", refreshToken)
+    const decodedToken: JwtPayload = jwtDecode(accessToken)
+    sessionStorage.setItem("id", decodedToken.data.id)
+    sessionStorage.setItem("username", decodedToken.data.username)
   })
 })
 

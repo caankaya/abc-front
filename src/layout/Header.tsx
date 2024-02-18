@@ -1,23 +1,23 @@
-import { faBookOpen, faGraduationCap } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { togglerDropdown } from "../../redux/reducers/header";
-import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import LoginModal from "../components/LoginModal";
+import { faBookOpen, faGraduationCap } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { useAppDispatch, useAppSelector } from "../../commons/redux"
+import { togglerDropdown } from "../../redux/reducers/header"
+import { Link } from "react-router-dom"
+import { useEffect, useState } from "react"
+import LoginModal from "../components/LoginModal"
 
 export default function Header() {
-  const dispatch = useAppDispatch();
-  const isOpen = useAppSelector((state) => state.header.buttonBurger);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const dispatch = useAppDispatch()
+  const isOpen = useAppSelector((state) => state.header.buttonBurger)
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
 
   useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener("resize", handleResize);
+    const handleResize = () => setWindowWidth(window.innerWidth)
+    window.addEventListener("resize", handleResize)
     return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+      window.removeEventListener("resize", handleResize)
+    }
+  }, [])
 
   return (
     <header className="header ">
@@ -56,7 +56,7 @@ export default function Header() {
           type="button"
           className="lg:focus:outline-none flex flex-col mb-2 ml-10"
           onClick={() => {
-            dispatch(togglerDropdown(!isOpen));
+            dispatch(togglerDropdown(!isOpen))
           }}
         >
           <span
@@ -117,5 +117,5 @@ export default function Header() {
       </div>
       <LoginModal />
     </header>
-  );
+  )
 }

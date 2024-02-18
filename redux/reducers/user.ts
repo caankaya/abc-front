@@ -1,5 +1,9 @@
 import { jwtDecode } from "jwt-decode";
-import { createAsyncThunk, createReducer } from "@reduxjs/toolkit";
+import {
+  createAction,
+  createAsyncThunk,
+  createReducer,
+} from "@reduxjs/toolkit";
 import instance from "../../commons/axios";
 
 interface UserState {
@@ -34,16 +38,23 @@ export const login = createAsyncThunk(
   }
 );
 
+export const logout = createAction("user/logut");
+
 const userReducer = createReducer(initialState, (builder) => {
-  builder.addCase(login.fulfilled, (state, action) => {
-    state.logged = true;
-    const { accessToken, refreshToken } = action.payload.data;
-    sessionStorage.setItem("accessToken", accessToken);
-    sessionStorage.setItem("refreshToken", refreshToken);
-    const decodedToken: JwtPayload = jwtDecode(accessToken);
-    sessionStorage.setItem("id", decodedToken.data.id);
-    sessionStorage.setItem("username", decodedToken.data.username);
-  });
+  builder
+    .addCase(login.fulfilled, (state, action) => {
+      state.logged = true;
+      const { accessToken, refreshToken } = action.payload.data;
+      sessionStorage.setItem("accessToken", accessToken);
+      sessionStorage.setItem("refreshToken", refreshToken);
+      const decodedToken: JwtPayload = jwtDecode(accessToken);
+      sessionStorage.setItem("id", decodedToken.data.id);
+      sessionStorage.setItem("username", decodedToken.data.username);
+    })
+    .addCase(logout, (state) => {
+      state.logged = false;
+      sessionStorage.clear();
+    });
 });
 
 export default userReducer;

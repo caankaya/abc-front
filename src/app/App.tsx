@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import { useAppSelector } from "../../commons/redux";
+import { useAppDispatch, useAppSelector } from "../../commons/redux";
 
 export default function App() {
+  const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.user.logged);
 
   return (

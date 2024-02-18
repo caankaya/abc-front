@@ -5,9 +5,12 @@ import { togglerDropdown } from "../../redux/reducers/header";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import LoginModal from "../components/LoginModal";
+import { logout } from "../../redux/reducers/user";
+import { openModal } from "../../commons/functions";
 
 export default function Header() {
   const dispatch = useAppDispatch();
+  const modal = document.getElementById("my_modal_5");
   const user = useAppSelector((state) => state.user.logged);
   const isOpen = useAppSelector((state) => state.header.buttonBurger);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -91,6 +94,7 @@ export default function Header() {
                       className="btn btn-sm btn-ghost w-[180px]"
                       onClick={() => {
                         dispatch(togglerDropdown(false));
+                        dispatch(logout());
                       }}
                     >
                       Déconnexion
@@ -102,11 +106,7 @@ export default function Header() {
                       className="btn btn-sm btn-ghost w-[180px]"
                       onClick={() => {
                         dispatch(togglerDropdown(false));
-                        (
-                          document.getElementById(
-                            "my_modal_5"
-                          ) as HTMLDialogElement
-                        )?.showModal();
+                        openModal(modal as HTMLDialogElement);
                       }}
                     >
                       Se connecter

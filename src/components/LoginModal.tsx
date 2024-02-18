@@ -1,22 +1,23 @@
 import { FormEvent } from "react";
 import { useAppDispatch } from "../../commons/redux";
 import { login } from "../../redux/reducers/user";
+import { closeModal } from "../../commons/functions";
 
 export default function LoginModal() {
   const dispatch = useAppDispatch();
+  const modal = document.getElementById("my_modal_5");
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.currentTarget;
     const formData = new FormData(form);
     dispatch(login(formData));
-    (document.getElementById("my_modal_5") as HTMLDialogElement)?.close();
+    closeModal(modal as HTMLDialogElement);
   };
 
   return (
     <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
       <div className="modal-box bg-white">
         <form method="dialog">
-          {/* if there is a button in form, it will close the modal */}
           <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
             ✕
           </button>

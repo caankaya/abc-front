@@ -5,9 +5,9 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
-export default function ScenariosTables() {
+export default function SequencesTables() {
   return (
-    <div className="ScenariosTables">
+    <div className="SequencesTables">
       <div className="overflow-x-auto">
         <table className="table table-zebra">
           {/* head */}

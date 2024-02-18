@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import headerReducer from "./reducers/header";
+import userReducer from "./reducers/user";
 
 const store = configureStore({
   reducer: {
     header: headerReducer,
+    user: userReducer,
   },
 });
 

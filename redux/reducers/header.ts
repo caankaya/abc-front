@@ -24,7 +24,7 @@ const headerReducer = createReducer(initialState, (builder) => {
       state.buttonBurger = action.payload;
     })
     .addCase(openLoginModal, (state, action) => {
-      state.buttonBurger = action.payload;
+      state.loginModal = action.payload;
     });
 });
 

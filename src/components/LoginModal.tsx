@@ -1,16 +1,17 @@
-import { FormEvent } from "react"
-import { useAppDispatch } from "../../commons/redux"
-import { login } from "../../redux/reducers/user"
+import { FormEvent } from "react";
+import { useAppDispatch } from "../../commons/redux";
+import { login } from "../../redux/reducers/user";
 
 export default function LoginModal() {
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    const form = event.currentTarget
-    const formData = new FormData(form)
-    dispatch(login(formData))
-    ;(document.getElementById("my_modal_5") as HTMLDialogElement)?.close()
-  }
+    event.preventDefault();
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    dispatch(login(formData));
+    (document.getElementById("my_modal_5") as HTMLDialogElement)?.close();
+  };
+
   return (
     <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
       <div className="modal-box bg-white">
@@ -23,7 +24,7 @@ export default function LoginModal() {
         <form
           method="post"
           onSubmit={(event) => {
-            handleSubmit(event)
+            handleSubmit(event);
           }}
         >
           <div className="mb-6">
@@ -65,5 +66,5 @@ export default function LoginModal() {
         </form>
       </div>
     </dialog>
-  )
+  );
 }

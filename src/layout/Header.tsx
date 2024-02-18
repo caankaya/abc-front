@@ -85,11 +85,12 @@ export default function Header() {
             <li>
               <a
                 className="btn btn-sm btn-ghost w-[180px]"
-                onClick={() =>
-                  (
+                onClick={() => {
+                  dispatch(togglerDropdown(false))
+                  ;(
                     document.getElementById("my_modal_5") as HTMLDialogElement
                   )?.showModal()
-                }
+                }}
               >
                 Se connecter
               </a>

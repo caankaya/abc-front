@@ -13,15 +13,16 @@ const initialState: SequencesState = {
 export const getAllSequences = createAsyncThunk(
   "/getAllSequences", // nom de l'action
   async () => {
-    const response = await instance.get("/user/userId/sequence");
+    const response = await instance.get(
+      `/user/${sessionStorage.getItem("id")}/sequence`
+    );
     return response.data;
   }
 );
 
 const sequencesReducer = createReducer(initialState, (builder) => {
   builder.addCase(getAllSequences.fulfilled, (state, action) => {
-    console.log("state :", state);
-    console.log("action :", action);
+    state.sequences = action.payload;
   });
 });
 

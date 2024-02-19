@@ -10,7 +10,7 @@ import {
 import Layout from "./layout/Layout";
 import App from "./app/App";
 import "../src/styles/index.css";
-import Scenarios from "./pages/Scenarios";
+import Scenarios from "./pages/Sequences";
 
 const router = createBrowserRouter(
   createRoutesFromElements(

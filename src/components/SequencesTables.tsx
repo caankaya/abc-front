@@ -4,8 +4,14 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
+import moment from "moment";
+import { ISequence } from "../@types/sequences";
 
-export default function SequencesTables() {
+export default function SequencesTables({
+  sequences,
+}: {
+  sequences: ISequence[];
+}) {
   return (
     <div className="SequencesTables">
       <div className="overflow-x-auto">
@@ -20,26 +26,30 @@ export default function SequencesTables() {
             </tr>
           </thead>
           <tbody>
-            {/* row 1 */}
-            <tr>
-              <th>
-                <button>
-                  <FontAwesomeIcon icon={faTrashCan} />
-                </button>
-              </th>
-              <td>1</td>
-              <td>Cy Ganderton</td>
-              <td>01/01/2024 19h21</td>
-              <td>
-                <Link to={"/session/1"}>
-                  Voir le scénario
-                  <FontAwesomeIcon
-                    icon={faArrowUpRightFromSquare}
-                    style={{ marginLeft: "1rem" }}
-                  />
-                </Link>
-              </td>
-            </tr>
+            {sequences &&
+              sequences.map((sequence) => (
+                <tr key={sequence.id}>
+                  <th>
+                    <button>
+                      <FontAwesomeIcon icon={faTrashCan} />
+                    </button>
+                  </th>
+                  <td>{sequence.id}</td>
+                  <td>{sequence.name}</td>
+                  <td>
+                    {moment(sequence.created_at).format("DD/MM/YYYY HH:mm")}
+                  </td>
+                  <td>
+                    <Link to={`/scenarios/${sequence.id}`}>
+                      Voir le scénario
+                      <FontAwesomeIcon
+                        icon={faArrowUpRightFromSquare}
+                        style={{ marginLeft: "1rem" }}
+                      />
+                    </Link>
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>

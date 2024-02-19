@@ -1,21 +1,13 @@
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../../commons/redux";
 import { openModal } from "../../commons/functions";
-import { useEffect } from "react";
 
 export default function App() {
-  const modal = document.getElementById("my_modal_5");
   const user = useAppSelector((state) => state.user.logged);
 
-  useEffect(() => {
-    if (modal) {
-      return;
-    }
-  }, []);
-
   return (
-    <main className="app">
-      <div className="flex flex-col gap-y-5 shadow p-5 rounded-lg w-[50%] m-auto mt-5 max-sm:overflow-y-auto">
+    <main className="app flex flex-col items-center">
+      <div className="flex flex-col gap-y-5 shadow p-5 rounded-lg w-1/2 m-auto mt-5 max-sm:overflow-y-auto absolute top-1/3">
         <p className="text-sm text-justify">
           Vous devez préparer un nouveau cours et vous aimeriez innover en
           intégrant des activités d’apprentissage, mais vous ne savez pas quoi

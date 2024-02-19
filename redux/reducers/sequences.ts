@@ -20,10 +20,22 @@ export const getAllSequences = createAsyncThunk(
   }
 );
 
+export const deleteOneSequence = createAsyncThunk(
+  "sequence/the sequence has deleted", // nom de l'action
+  async (sequenceId: number) => {
+    const response = await instance.delete(
+      `/user/${sessionStorage.getItem("id")}/sequence/${sequenceId}/`
+    );
+    return response.data;
+  }
+);
+
 const sequencesReducer = createReducer(initialState, (builder) => {
-  builder.addCase(getAllSequences.fulfilled, (state, action) => {
-    state.sequences = action.payload;
-  });
+  builder
+    .addCase(getAllSequences.fulfilled, (state, action) => {
+      state.sequences = action.payload;
+    })
+    .addCase(deleteOneSequence.fulfilled, () => {});
 });
 
 export default sequencesReducer;

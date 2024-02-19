@@ -6,12 +6,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import { ISequence } from "../@types/sequences";
+import { useAppDispatch } from "../../commons/redux";
+import { deleteOneSequence } from "../../redux/reducers/sequences";
 
 export default function SequencesTables({
   sequences,
 }: {
   sequences: ISequence[];
 }) {
+  const dispatch = useAppDispatch();
+
   return (
     <div className="SequencesTables">
       <div className="overflow-x-auto">
@@ -31,7 +35,11 @@ export default function SequencesTables({
               sequences.map((sequence) => (
                 <tr key={sequence.id}>
                   <th>
-                    <button>
+                    <button
+                      onClick={() => {
+                        dispatch(deleteOneSequence(sequence.id));
+                      }}
+                    >
                       <FontAwesomeIcon icon={faTrashCan} />
                     </button>
                   </th>

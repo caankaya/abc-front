@@ -4,7 +4,6 @@ import { useAppDispatch, useAppSelector } from "../../commons/redux";
 import { togglerDropdown } from "../../redux/reducers/header";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import LoginModal from "../components/LoginModal";
 import { logout } from "../../redux/reducers/user";
 import { openModal } from "../../commons/functions";
 

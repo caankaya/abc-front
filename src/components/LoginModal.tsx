@@ -1,17 +1,20 @@
-import { FormEvent } from "react";
+import { FormEvent, useRef, useState } from "react";
 import { useAppDispatch } from "../../commons/redux";
 import { login } from "../../redux/reducers/user";
 import { closeModal } from "../../commons/functions";
 
 export default function LoginModal() {
   const dispatch = useAppDispatch();
-  const modal = document.getElementById("my_modal_5");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.currentTarget;
     const formData = new FormData(form);
     dispatch(login(formData));
-    closeModal(modal as HTMLDialogElement);
+    setUsername("");
+    setPassword("");
+    closeModal();
   };
 
   return (
@@ -41,6 +44,8 @@ export default function LoginModal() {
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="pseudo"
                 autoComplete="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 required
               />
             </label>
@@ -57,6 +62,8 @@ export default function LoginModal() {
                 name="password"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="mot de passe"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 required
               />
             </label>

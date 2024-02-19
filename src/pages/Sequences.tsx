@@ -23,7 +23,9 @@ export default function Sequences() {
           </Link>
         </div>
       )}
-      {sequences?.length > 0 && <SequencesTables sequences={sequences} />}
+      {sequences && sequences?.length > 0 && (
+        <SequencesTables sequences={sequences} />
+      )}
     </div>
   );
 }

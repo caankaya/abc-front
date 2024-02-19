@@ -25,6 +25,7 @@ export default function SequencesTables({
               <th>Date de création</th>
             </tr>
           </thead>
+          {/* body */}
           <tbody>
             {sequences &&
               sequences.map((sequence) => (

@@ -2,7 +2,7 @@ import { faBookOpen, faGraduationCap } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useAppDispatch, useAppSelector } from "../../commons/redux";
 import { togglerDropdown } from "../../redux/reducers/header";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import LoginModal from "../components/LoginModal";
 import { logout } from "../../redux/reducers/user";
@@ -10,7 +10,7 @@ import { openModal } from "../../commons/functions";
 
 export default function Header() {
   const dispatch = useAppDispatch();
-  const modal = document.getElementById("my_modal_5");
+  const navigate = useNavigate();
   const user = useAppSelector((state) => state.user.logged);
   const isOpen = useAppSelector((state) => state.header.buttonBurger);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -95,6 +95,7 @@ export default function Header() {
                       onClick={() => {
                         dispatch(togglerDropdown(false));
                         dispatch(logout());
+                        navigate("/");
                       }}
                     >
                       Déconnexion

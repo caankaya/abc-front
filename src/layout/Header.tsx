@@ -80,7 +80,7 @@ export default function Header() {
         </button>
         {/* Menu déroulant */}
         <div
-          className={`p-2 bg-base-100 rounded-box shadow w-52 absolute top-16 right-5 flex-col ${
+          className={`p-2 bg-base-100 rounded-box shadow w-52 absolute top-16 right-5 flex-col tablet:w-40 ${
             isOpen ? "visible" : "hidden"
           }`}
         >
@@ -90,7 +90,7 @@ export default function Header() {
                 {user ? (
                   <li>
                     <a
-                      className="btn btn-sm btn-ghost w-[180px]"
+                      className="btn btn-sm btn-ghost w-[180px] tablet:btn-xs"
                       onClick={() => {
                         dispatch(togglerDropdown(false));
                         dispatch(logout());
@@ -103,7 +103,7 @@ export default function Header() {
                 ) : (
                   <li>
                     <a
-                      className="btn btn-sm btn-ghost w-[180px]"
+                      className="btn btn-sm btn-ghost w-[180px] tablet:btn-xs"
                       onClick={() => {
                         dispatch(togglerDropdown(false));
                         openModal("my_modal_5");
@@ -118,7 +118,7 @@ export default function Header() {
 
             <li className={`${windowWidth < 768 ? "visible" : "hidden"}`}>
               <a
-                className="btn btn-sm btn-ghost btn-block"
+                className="btn btn-sm btn-ghost btn-block tablet:btn-xs"
                 href="https://moodletoolguide.net/fr/"
                 target="_blank"
               >
@@ -127,7 +127,7 @@ export default function Header() {
             </li>
             <li className={`${windowWidth < 768 ? "visible" : "hidden"}`}>
               <a
-                className="btn btn-sm btn-ghost btn-block"
+                className="btn btn-sm btn-ghost btn-block tablet:btn-xs"
                 href="https://h5p.org/content-types-and-applications"
                 target="_blank"
               >

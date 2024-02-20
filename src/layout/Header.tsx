@@ -31,7 +31,7 @@ export default function Header() {
               <img src="/src/assets/logo.png" alt="" width={100} height={50} />
             </Link>
           </div>
-          <p className="text-sm ml-5 text-center">
+          <p className="text-sm ml-5 text-center tablet:text-xs">
             Création de scénario d'apprentissage
           </p>
         </div>
@@ -41,7 +41,11 @@ export default function Header() {
           }`}
         >
           <li>
-            <a href="https://moodletoolguide.net/fr/" target="_blank">
+            <a
+              href="https://moodletoolguide.net/fr/"
+              target="_blank"
+              className="tablet:text-xs"
+            >
               Guide des outils Moodle <FontAwesomeIcon icon={faGraduationCap} />
             </a>
           </li>
@@ -49,6 +53,7 @@ export default function Header() {
             <a
               href="https://h5p.org/content-types-and-applications"
               target="_blank"
+              className="tablet:text-xs"
             >
               Exemples H5P <FontAwesomeIcon icon={faBookOpen} />
             </a>
@@ -80,6 +85,7 @@ export default function Header() {
         </button>
         {/* Menu déroulant */}
         <div
+          style={{ zIndex: 999 }}
           className={`p-2 bg-base-100 rounded-box shadow w-52 absolute top-16 right-5 flex-col tablet:w-40 ${
             isOpen ? "visible" : "hidden"
           }`}

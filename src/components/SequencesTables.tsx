@@ -6,12 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import { useAppDispatch } from "../../commons/redux";
-import {
-  deleteOneSequence,
-  getAllSequences,
-} from "../../redux/reducers/sequences";
+import { deleteSequence } from "../../redux/reducers/sequences";
 import { ISequence } from "../@types/sequences";
-import { useEffect } from "react";
 
 export default function SequencesTables({
   sequences,
@@ -19,17 +15,6 @@ export default function SequencesTables({
   sequences: ISequence[];
 }) {
   const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    const handleDelete = (sequenceId: number) => {
-      dispatch(deleteOneSequence(sequenceId));
-      dispatch(getAllSequences()); // Re-fetch après la suppression
-    };
-
-    return () => {
-      // Cleanup function to prevent memory leaks
-    };
-  }, [dispatch]);
 
   return (
     <div className="SequencesTables">
@@ -52,7 +37,7 @@ export default function SequencesTables({
                   <th>
                     <button
                       onClick={() => {
-                        dispatch(deleteOneSequence(sequence.id));
+                        dispatch(deleteSequence(sequence.id));
                       }}
                     >
                       <FontAwesomeIcon icon={faTrashCan} />
@@ -60,9 +45,7 @@ export default function SequencesTables({
                   </th>
                   <td>{sequence.id}</td>
                   <td>{sequence.name}</td>
-                  <td>
-                    {moment(sequence.created_at).format("DD/MM/YYYY HH:mm")}
-                  </td>
+                  <td>{moment(sequence.created_at).format("DD/MM/YYYY")}</td>
                   <td>
                     <Link to={`/scenarios/${sequence.id}`}>
                       Voir le scénario

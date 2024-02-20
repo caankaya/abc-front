@@ -24,7 +24,7 @@ export const getAllSequences = createAsyncThunk(
   }
 );
 
-export const createOneSequence = createAsyncThunk(
+export const createSequence = createAsyncThunk(
   "Sequence/The sequance has created", // nom de l'action
   async (sequenceData: FormData) => {
     const objData = Object.fromEntries(sequenceData);
@@ -40,7 +40,7 @@ export const createOneSequence = createAsyncThunk(
   }
 );
 
-export const deleteOneSequence = createAsyncThunk(
+export const deleteSequence = createAsyncThunk(
   "sequence/the sequence has deleted", // nom de l'action
   async (sequenceId: number) => {
     const response = await instance.delete(
@@ -50,21 +50,17 @@ export const deleteOneSequence = createAsyncThunk(
   }
 );
 
-export const clearUseEffect = createAction("Sequence/Clear the useEffect");
-
 const sequencesReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(getAllSequences.fulfilled, (state, action) => {
       state.sequences = action.payload;
     })
-    .addCase(deleteOneSequence.fulfilled, (state, action) => {
-      console.log("action :", action);
-      state.sequences = state?.sequences.filter(
-        (sequence) => sequence.id !== action.meta.arg
-      );
-    })
-    .addCase(clearUseEffect, (state) => {
-      state.sequences = null;
+    .addCase(deleteSequence.fulfilled, (state, action) => {
+      if (state.sequences) {
+        state.sequences = state?.sequences.filter(
+          (sequence) => sequence.id !== action.meta.arg
+        );
+      }
     });
 });
 

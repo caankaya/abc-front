@@ -1,7 +1,10 @@
 import { FormEvent, useState } from "react";
 import { useAppDispatch } from "../../commons/redux";
 import { closeModal } from "../../commons/functions";
-import { createOneSequence } from "../../redux/reducers/sequences";
+import {
+  createSequence,
+  getAllSequences,
+} from "../../redux/reducers/sequences";
 import { useNavigate } from "react-router-dom";
 
 export default function CreateSequenceModal() {
@@ -13,10 +16,12 @@ export default function CreateSequenceModal() {
     event.preventDefault();
     const form = event.currentTarget;
     const formData = new FormData(form);
-    dispatch(createOneSequence(formData));
+    dispatch(createSequence(formData));
     setSequenceName("");
     closeModal("my_modal_6");
-    navigate("/scenarios");
+    setTimeout(() => {
+      navigate("/scenarios");
+    }, 100);
   };
 
   return (

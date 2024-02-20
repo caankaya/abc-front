@@ -39,6 +39,8 @@ export const getCard = createAsyncThunk(
   }
 );
 
+export const clearCardModal = createAction("Session/Cleaning card modal");
+
 const sessionReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(toggleLevelButton, (state, action) => {
@@ -48,7 +50,10 @@ const sessionReducer = createReducer(initialState, (builder) => {
       state.cards = action.payload;
     })
     .addCase(getCard.fulfilled, (state, action) => {
-      state.card = action.payload;
+      state.card = action.payload[0];
+    })
+    .addCase(clearCardModal, (state) => {
+      state.card = null;
     });
 });
 

@@ -1,4 +1,6 @@
+import { closeModal } from "../../commons/functions";
 import { useAppDispatch, useAppSelector } from "../../commons/redux";
+import { clearCardModal } from "../../redux/reducers/session";
 
 export default function CardModal() {
   const dispatch = useAppDispatch();
@@ -8,72 +10,66 @@ export default function CardModal() {
   return (
     <dialog id="my_modal_8" className="modal">
       <div
-        className="modal-box w-full lg:max-w-5xl flex gap-2 max-md:max-w-2xl"
+        className="modal-box w-2/6 max-w-5xl tablet:w-4/6"
         style={{ background: card?.get_activities.color }}
       >
-        <div
-          className="card w-96 bg-base-100"
-          style={{
-            background: card?.get_activities.color,
-          }}
-        >
-          <div className="card-body">
-            <h2 className="card-title text-white">
-              {card?.get_activities.card_name}
-            </h2>
-            <ul>
-              {card?.get_activities.activities.map((activities, index) => (
-                <li className="py-2 text-white" key={index}>
-                  {activities}
-                </li>
-              ))}
-            </ul>
-          </div>
+        <form method="dialog">
+          <button
+            className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-white"
+            onClick={() => {
+              dispatch(clearCardModal());
+              closeModal("my_modal_8");
+            }}
+          >
+            ✕
+          </button>
+        </form>
+        <h2 className="text-md font-semibold text-center text-white mb-2">
+          {card?.get_activities.card_name}
+        </h2>
+        <div className="mb-5">
+          {card?.get_activities.activities.map((activities, index) => (
+            <li className="py-2 text-white text-sm" key={index}>
+              {activities}
+            </li>
+          ))}
         </div>
-        <div
-          className="card bg-base-100  w-full flex flex-col justify-between content-between"
-          style={{
-            background: card?.get_activities.color,
-          }}
-        >
-          {card?.get_activities.tool_categories.map((tool, index) => (
-            <div className="card-body flex" key={index}>
-              <strong className="card-title text-sm text-white">
-                {tool.tool_category_name}
-              </strong>
-              <p>
-                {!isChecked &&
-                  tool.tools
-                    .filter((e) => e.level_id === 1)
-                    .map((e) => (
-                      <button
-                        key={e.tool_name}
-                        className="btn btn-sm normal-case m-1"
-                        type="button"
-                        onClick={() => {}}
-                      >
-                        {e.tool_name}
-                      </button>
-                    ))}
-                {isChecked &&
-                  tool.tools.map((e) => (
+        {card?.get_activities.tool_categories.map((tool, index) => (
+          <div className="flex flex-col gap-1" key={index}>
+            <p className="text-sm text-white font-semibold">
+              {tool.tool_category_name}
+            </p>
+            <p>
+              {!isChecked &&
+                tool.tools
+                  .filter((e) => e.level_id === 1)
+                  .map((e) => (
                     <button
                       key={e.tool_name}
-                      className="btn btn-sm normal-case m-1"
+                      className="btn btn-sm normal-case mr-2 mb-5 tablet:btn-xs"
                       type="button"
                       onClick={() => {}}
                     >
                       {e.tool_name}
                     </button>
                   ))}
-              </p>
-            </div>
-          ))}
-        </div>
+              {isChecked &&
+                tool.tools.map((e) => (
+                  <button
+                    key={e.tool_name}
+                    className="btn btn-sm normal-case mr-2 mb-5"
+                    type="button"
+                    onClick={(event) => {
+                      console.log("event :", event);
+                    }}
+                  >
+                    {e.tool_name}
+                  </button>
+                ))}
+            </p>
+          </div>
+        ))}
       </div>
-      <form method="dialog" className="modal-backdrop">
-        <button></button>
-      </form>
     </dialog>
   );
 }

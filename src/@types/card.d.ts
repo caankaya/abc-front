@@ -3,7 +3,7 @@ export interface ICard {
 }
 
 export interface GetActivities {
-  card_id: string;
+  card_id: number;
   card_name: string;
   activities: string[];
   color: string;
@@ -17,7 +17,7 @@ export interface ToolCategory {
 }
 
 export interface Tool {
-  tool_id: number;
+  tool_id: string;
   tool_name: string;
   level_id: number;
   level_name: string;

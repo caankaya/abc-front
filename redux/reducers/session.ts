@@ -39,6 +39,19 @@ export const getCard = createAsyncThunk(
   }
 );
 
+export const createSession = createAsyncThunk(
+  "Session/The session has created",
+  async (formData: FormData) => {
+    const objData = Object.fromEntries(formData);
+    console.log("objData :", objData);
+    const response = await instance.post(
+      `/user/${sessionStorage.getItem("id")}/session`,
+      objData
+    );
+    return response.data;
+  }
+);
+
 export const clearCardModal = createAction("Session/Cleaning card modal");
 
 const sessionReducer = createReducer(initialState, (builder) => {

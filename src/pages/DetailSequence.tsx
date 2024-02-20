@@ -1,3 +1,9 @@
+import LevelButton from "../components/LevelButton";
+
 export default function DetailSequence() {
-  return <div className="DetailSequence">DetailSequence</div>;
+  return (
+    <div className="DetailSequence">
+      <LevelButton />
+    </div>
+  );
 }

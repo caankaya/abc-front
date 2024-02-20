@@ -3,12 +3,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import headerReducer from "./reducers/header";
 import userReducer from "./reducers/user";
 import sequenceReducer from "./reducers/sequences";
+import sessionReducer from "./reducers/session";
 
 const store = configureStore({
   reducer: {
     header: headerReducer,
     user: userReducer,
     sequence: sequenceReducer,
+    session: sessionReducer,
   },
 });
 

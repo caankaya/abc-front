@@ -11,7 +11,7 @@ function DeleteSequenceModal({ sequenceId }: { sequenceId: number }) {
       <dialog id="my_modal_7" className="modal w-[60%] m-auto">
         <div className="modal-box">
           <h3 className="font-bold text-sm text-center error-line mb-5 tablet:text-xs">
-            Vous êtes sur le point de supprimer le scénario !
+            Vous êtes sur le point de supprimer le scénario {sequenceId} !
           </h3>
           <section className="button-container flex justify-evenly">
             <button

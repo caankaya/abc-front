@@ -1,6 +1,11 @@
+import { openModal } from "../../commons/functions";
+import { useAppDispatch } from "../../commons/redux";
+import { getCard } from "../../redux/reducers/session";
 import { ICards } from "../@types/cards";
+import CardModal from "./CardModal";
 
 export default function Cards({ cards }: { cards: ICards[] }) {
+  const dispatch = useAppDispatch();
   return (
     <section className="flex m-3 gap-3 tablet:flex-col tablet:mb-20 tablet:items-center">
       {cards &&
@@ -16,13 +21,20 @@ export default function Cards({ cards }: { cards: ICards[] }) {
               </h2>
               <p className="card-text text-white">{card.comments}</p>
               <div className="card-actions justify-end">
-                <button className="btn btn-sm normal-case tablet:btn-xs">
+                <button
+                  className="btn btn-sm normal-case tablet:btn-xs"
+                  onClick={() => {
+                    dispatch(getCard(card.id));
+                    openModal("my_modal_8");
+                  }}
+                >
                   Activités
                 </button>
               </div>
             </div>
           </div>
         ))}
+      <CardModal />
     </section>
   );
 }

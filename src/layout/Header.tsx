@@ -31,9 +31,12 @@ export default function Header() {
               <img src="/src/assets/logo.png" alt="" width={100} height={50} />
             </Link>
           </div>
-          <p className="text-sm ml-5 text-center tablet:text-xs">
+          <a
+            className="btn btn-sm ml-5 tablet:btn-xs bg-[#d8dee9] border-none shadow-none font-normal hover:bg-[#c7ccd7]"
+            href="/"
+          >
             Création de scénario d'apprentissage
-          </p>
+          </a>
         </div>
         <ul
           className={`menu menu-horizontal px-1 ${

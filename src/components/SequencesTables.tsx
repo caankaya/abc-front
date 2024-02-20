@@ -12,6 +12,8 @@ import {
 } from "../../redux/reducers/sequences";
 import { ISequence } from "../@types/sequences";
 import { useEffect } from "react";
+import DeleteSequenceModal from "./DeleteSequenceModal";
+import { openModal } from "../../commons/functions";
 
 export default function SequencesTables({
   sequences,
@@ -40,31 +42,34 @@ export default function SequencesTables({
           <tbody className="tablet:text-xs">
             {sequences &&
               sequences.map((sequence) => (
-                <tr key={sequence.id}>
-                  <th></th>
-                  <th></th>
-                  <th>
-                    <button
-                      onClick={() => {
-                        dispatch(deleteSequence(sequence.id));
-                      }}
-                    >
-                      <FontAwesomeIcon icon={faTrashCan} />
-                    </button>
-                  </th>
-                  <td>{sequence.id}</td>
-                  <td>{sequence.name}</td>
-                  <td>{moment(sequence.created_at).format("DD/MM/YYYY")}</td>
-                  <td>
-                    <Link to={`/scenarios/${sequence.id}`}>
-                      Voir le scénario
-                      <FontAwesomeIcon
-                        icon={faArrowUpRightFromSquare}
-                        style={{ marginLeft: "1rem" }}
-                      />
-                    </Link>
-                  </td>
-                </tr>
+                <>
+                  <tr key={sequence.id}>
+                    <th></th>
+                    <th></th>
+                    <th>
+                      <button
+                        onClick={() => {
+                          openModal("my_modal_7");
+                        }}
+                      >
+                        <FontAwesomeIcon icon={faTrashCan} />
+                      </button>
+                    </th>
+                    <td>{sequence.id}</td>
+                    <td>{sequence.name}</td>
+                    <td>{moment(sequence.created_at).format("DD/MM/YYYY")}</td>
+                    <td>
+                      <Link to={`/scenarios/${sequence.id}`}>
+                        Voir le scénario
+                        <FontAwesomeIcon
+                          icon={faArrowUpRightFromSquare}
+                          style={{ marginLeft: "1rem" }}
+                        />
+                      </Link>
+                    </td>
+                  </tr>
+                  <DeleteSequenceModal sequenceId={sequence.id} />
+                </>
               ))}
           </tbody>
         </table>

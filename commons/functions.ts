@@ -1,15 +1,15 @@
-export function openModal() {
+export function openModal(modal: string) {
   const modalElement = document.getElementById(
-    "my_modal_5"
+    `${modal}`
   ) as HTMLDialogElement | null;
   if (modalElement) {
     modalElement.showModal();
   }
 }
 
-export function closeModal() {
+export function closeModal(modal: string) {
   const modalElement = document.getElementById(
-    "my_modal_5"
+    `${modal}`
   ) as HTMLDialogElement | null;
   if (modalElement) {
     modalElement.close();

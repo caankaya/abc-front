@@ -1,4 +1,4 @@
-import { FormEvent, useRef, useState } from "react";
+import { FormEvent, useState } from "react";
 import { useAppDispatch } from "../../commons/redux";
 import { login } from "../../redux/reducers/user";
 import { closeModal } from "../../commons/functions";
@@ -14,7 +14,7 @@ export default function LoginModal() {
     dispatch(login(formData));
     setUsername("");
     setPassword("");
-    closeModal();
+    closeModal("my_modal_5");
   };
 
   return (

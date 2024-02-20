@@ -19,9 +19,14 @@ export default function App() {
         <div className="flex justify-around gap-5">
           {user ? (
             <>
-              <Link to={"/scenarios"} className="btn btn-sm  max-lg:w-1/2">
+              <button
+                className="btn btn-sm  max-lg:w-1/2"
+                onClick={() => {
+                  openModal("my_modal_6");
+                }}
+              >
                 Créer un nouveau scénario
-              </Link>
+              </button>
               <Link to={"/scenarios"} className="btn btn-sm max-lg:w-1/2">
                 Voir les scénarios enregistrés
               </Link>
@@ -31,7 +36,7 @@ export default function App() {
               <button
                 className="btn btn-sm"
                 onClick={() => {
-                  openModal();
+                  openModal("my_modal_5");
                 }}
               >
                 Se connecter

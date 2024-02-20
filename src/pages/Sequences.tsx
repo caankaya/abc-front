@@ -7,11 +7,10 @@ import { getAllSequences } from "../../redux/reducers/sequences";
 export default function Sequences() {
   const dispatch = useAppDispatch();
   const sequences = useAppSelector((state) => state.sequence.sequences);
-  console.log("sequences :", sequences);
 
   useEffect(() => {
     dispatch(getAllSequences());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="flex flex-col items-center">

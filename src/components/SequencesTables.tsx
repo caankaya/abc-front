@@ -5,9 +5,13 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import moment from "moment";
-import { ISequence } from "../@types/sequences";
 import { useAppDispatch } from "../../commons/redux";
-import { deleteOneSequence } from "../../redux/reducers/sequences";
+import {
+  deleteOneSequence,
+  getAllSequences,
+} from "../../redux/reducers/sequences";
+import { ISequence } from "../@types/sequences";
+import { useEffect } from "react";
 
 export default function SequencesTables({
   sequences,
@@ -16,19 +20,30 @@ export default function SequencesTables({
 }) {
   const dispatch = useAppDispatch();
 
+  useEffect(() => {
+    const handleDelete = (sequenceId: number) => {
+      dispatch(deleteOneSequence(sequenceId));
+      dispatch(getAllSequences()); // Re-fetch après la suppression
+    };
+
+    return () => {
+      // Cleanup function to prevent memory leaks
+    };
+  }, [dispatch]);
+
   return (
     <div className="SequencesTables">
       <div className="overflow-x-auto">
         <table className="table table-zebra">
           {/* head */}
-          <thead>
+          {/* <thead>
             <tr>
               <th></th>
               <th>ID</th>
               <th>Nom du scénario</th>
               <th>Date de création</th>
             </tr>
-          </thead>
+          </thead> */}
           {/* body */}
           <tbody>
             {sequences &&

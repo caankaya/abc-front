@@ -6,8 +6,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import { useAppDispatch } from "../../commons/redux";
-import { deleteSequence } from "../../redux/reducers/sequences";
+import {
+  deleteSequence,
+  getAllSequences,
+} from "../../redux/reducers/sequences";
 import { ISequence } from "../@types/sequences";
+import { useEffect } from "react";
 
 export default function SequencesTables({
   sequences,
@@ -15,6 +19,9 @@ export default function SequencesTables({
   sequences: ISequence[];
 }) {
   const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(getAllSequences());
+  }, [dispatch, getAllSequences()]);
 
   return (
     <div className="SequencesTables">

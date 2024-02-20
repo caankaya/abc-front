@@ -3,7 +3,6 @@ import SequencesTables from "../components/SequencesTables";
 import { useAppDispatch, useAppSelector } from "../../commons/redux";
 import { useEffect } from "react";
 import { getAllSequences } from "../../redux/reducers/sequences";
-import { openModal } from "../../commons/functions";
 
 export default function Sequences() {
   const dispatch = useAppDispatch();

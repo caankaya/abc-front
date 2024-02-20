@@ -21,7 +21,13 @@ export default function LoginModal() {
     <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
       <div className="modal-box bg-white">
         <form method="dialog">
-          <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+          <button
+            className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+            onClick={() => {
+              setUsername("");
+              setPassword("");
+            }}
+          >
             ✕
           </button>
         </form>

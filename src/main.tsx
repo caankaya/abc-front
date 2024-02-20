@@ -10,13 +10,15 @@ import {
 import Layout from "./layout/Layout";
 import App from "./app/App";
 import "../src/styles/index.css";
-import Scenarios from "./pages/Sequences";
+import Sequences from "./pages/Sequences";
+import DetailSequence from "./pages/DetailSequence";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />} errorElement={"404"}>
       <Route index element={<App />} />
-      <Route path="/scenarios" element={<Scenarios />} />
+      <Route path="/scenarios" element={<Sequences />} />
+      <Route path="/scenarios/:id" element={<DetailSequence />} />
     </Route>
   )
 );

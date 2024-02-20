@@ -18,7 +18,10 @@ export default function LoginModal() {
   };
 
   return (
-    <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+    <dialog
+      id="my_modal_5"
+      className="modal modal-bottom tablet:modal-middle tablet:w-1/2 tablet:m-auto sm:modal-middle"
+    >
       <div className="modal-box bg-white">
         <form method="dialog">
           <button
@@ -39,7 +42,7 @@ export default function LoginModal() {
         >
           <div className="mb-6">
             <label
-              className="block mb-2 text-sm font-medium text-gray-900"
+              className="block mb-2 text-sm font-medium text-gray-900 tablet:text-xs"
               htmlFor="username"
             >
               Votre identifiant
@@ -47,7 +50,7 @@ export default function LoginModal() {
                 type="text"
                 id="username"
                 name="username"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 tablet:text-xs"
                 placeholder="pseudo"
                 autoComplete="username"
                 value={username}
@@ -58,7 +61,7 @@ export default function LoginModal() {
           </div>
           <div className="mb-6">
             <label
-              className="block mb-2 text-sm font-medium text-gray-900"
+              className="block mb-2 text-sm font-medium text-gray-900 tablet:text-xs"
               htmlFor="password"
             >
               Votre mot de passe
@@ -66,7 +69,7 @@ export default function LoginModal() {
                 type="password"
                 id="password"
                 name="password"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 tablet:text-xs"
                 placeholder="mot de passe"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -74,7 +77,7 @@ export default function LoginModal() {
               />
             </label>
           </div>
-          <button className="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm w-full m-auto block sm:w-auto px-5 py-2.5 text-center">
+          <button className="btn btn-sm text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm w-full m-auto block sm:w-auto text-center">
             Connexion
           </button>
         </form>

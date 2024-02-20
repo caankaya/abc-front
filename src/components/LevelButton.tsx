@@ -4,7 +4,6 @@ import { toggleLevelButton } from "../../redux/reducers/session";
 export default function LevelButton() {
   const dispatch = useAppDispatch();
   const isChecked = useAppSelector((state) => state.session.levelButton);
-  console.log("isChecked :", isChecked);
   return (
     <div className="level-switch-button">
       <div className="flex justify-center items-center gap-3 mt-3">

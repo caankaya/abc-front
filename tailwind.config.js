@@ -3,6 +3,9 @@ export default {
   content: ["./index.html", "./src/**/*.{ts,tsx}"],
   theme: {
     extend: {},
+    screens: {
+      tablet: { max: "900px" },
+    },
   },
   plugins: [require("daisyui")],
 

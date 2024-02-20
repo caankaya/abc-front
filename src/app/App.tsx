@@ -6,8 +6,8 @@ export default function App() {
   const user = useAppSelector((state) => state.user.logged);
 
   return (
-    <main className="app flex flex-col items-center">
-      <div className="flex flex-col gap-y-5 shadow p-5 rounded-lg w-1/2 m-auto mt-5 max-sm:overflow-y-auto absolute top-1/3">
+    <main className="app flex flex-col items-center tablet:mb-[30rem]">
+      <div className="flex flex-col gap-y-5 shadow p-5 rounded-lg w-1/2 m-auto mt-5 max-sm:overflow-y-auto absolute top-1/3 tablet:top-16 tablet:w-[80%]">
         <p className="text-sm text-justify">
           Vous devez préparer un nouveau cours et vous aimeriez innover en
           intégrant des activités d’apprentissage, mais vous ne savez pas quoi
@@ -16,18 +16,18 @@ export default function App() {
           enseignants, mais vous ne savez pas comment vous y prendre ? Alors
           l’application en ligne « ABC Learning » peuvent vous aider.
         </p>
-        <div className="flex justify-around gap-5">
+        <div className="flex justify-around gap-3 mobile:flex-col mobile:items-center">
           {user ? (
             <>
               <button
-                className="btn btn-sm  max-lg:w-1/2"
+                className="btn btn-sm"
                 onClick={() => {
                   openModal("my_modal_6");
                 }}
               >
                 Créer un nouveau scénario
               </button>
-              <Link to={"/scenarios"} className="btn btn-sm max-lg:w-1/2">
+              <Link to={"/scenarios"} className="btn btn-sm">
                 Voir les scénarios enregistrés
               </Link>
             </>

@@ -24,7 +24,7 @@ export default function SequencesTables({
   }, [dispatch, getAllSequences()]);
 
   return (
-    <div className="SequencesTables">
+    <div className="SequencesTables w-full">
       <div className="overflow-x-auto">
         <table className="table table-zebra">
           {/* head */}
@@ -37,10 +37,12 @@ export default function SequencesTables({
             </tr>
           </thead> */}
           {/* body */}
-          <tbody>
+          <tbody className="tablet:text-xs">
             {sequences &&
               sequences.map((sequence) => (
                 <tr key={sequence.id}>
+                  <th></th>
+                  <th></th>
                   <th>
                     <button
                       onClick={() => {

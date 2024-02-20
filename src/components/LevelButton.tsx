@@ -16,8 +16,10 @@ export default function LevelButton() {
           id="toggler"
           name="toggler"
           type="checkbox"
-          className={`toggle toggle-md ${
-            !isChecked ? "bg-[#5e81ac]" : "bg-[#bf616a]"
+          className={`toggle toggle-md  ${
+            !isChecked
+              ? "bg-[#5e81ac] hover:bg-[#3467a7]"
+              : "bg-[#bf616a] hover:bg-[#c03846]"
           }  `}
           checked={isChecked}
           onChange={() => {

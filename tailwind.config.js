@@ -5,6 +5,8 @@ export default {
     extend: {},
     screens: {
       tablet: { max: "900px" },
+      mobile: { max: "425px" },
+      sm: "640px",
     },
   },
   plugins: [require("daisyui")],

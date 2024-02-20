@@ -1,10 +1,7 @@
 import { FormEvent, useState } from "react";
 import { useAppDispatch } from "../../commons/redux";
 import { closeModal } from "../../commons/functions";
-import {
-  createSequence,
-  getAllSequences,
-} from "../../redux/reducers/sequences";
+import { createSequence } from "../../redux/reducers/sequences";
 import { useNavigate } from "react-router-dom";
 
 export default function CreateSequenceModal() {
@@ -40,7 +37,7 @@ export default function CreateSequenceModal() {
         >
           <div className="mb-6">
             <label
-              className="block mb-2 text-sm font-medium text-gray-900"
+              className="block mb-2 text-sm font-medium text-gray-900 tablet:text-xs"
               htmlFor="name"
             >
               Nouveau scénario
@@ -48,7 +45,7 @@ export default function CreateSequenceModal() {
                 type="text"
                 id="name"
                 name="name"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 tablet:text-xs"
                 placeholder="Entrez le nom du scénario"
                 autoComplete="name"
                 value={sequenceName}
@@ -57,7 +54,7 @@ export default function CreateSequenceModal() {
               />
             </label>
           </div>
-          <button className="text-white bg-green-700 hover:bg-blue-800 font-medium rounded-lg text-sm w-full m-auto block sm:w-auto px-5 py-2.5 text-center">
+          <button className="btn btn-sm text-white btn-success m-auto block">
             Valider
           </button>
         </form>

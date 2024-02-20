@@ -8,14 +8,14 @@ function DeleteSequenceModal({ sequenceId }: { sequenceId: number }) {
 
   return (
     <React.Fragment>
-      <dialog id="my_modal_7" className="modal">
+      <dialog id="my_modal_7" className="modal w-[60%] m-auto">
         <div className="modal-box">
-          <h3 className="font-bold text-sm text-center error-line mb-5">
+          <h3 className="font-bold text-sm text-center error-line mb-5 tablet:text-xs">
             Vous êtes sur le point de supprimer le scénario !
           </h3>
           <section className="button-container flex justify-evenly">
             <button
-              className="btn btn-error btn-sm text-white"
+              className="btn btn-error btn-sm text-white tablet:text-xs"
               onClick={() => {
                 dispatch(deleteSequence(sequenceId));
                 closeModal("my_modal_7");
@@ -24,7 +24,7 @@ function DeleteSequenceModal({ sequenceId }: { sequenceId: number }) {
               Supprimer
             </button>
             <button
-              className="btn btn-success btn-sm text-white w-24"
+              className="btn btn-success btn-sm text-white w-[5.5rem] tablet:text-xs"
               onClick={() => {
                 closeModal("my_modal_7");
               }}
@@ -33,15 +33,6 @@ function DeleteSequenceModal({ sequenceId }: { sequenceId: number }) {
             </button>
           </section>
         </div>
-        <form method="dialog" className="modal-backdrop">
-          <button
-            onClick={() => {
-              closeModal("my_modal_7");
-            }}
-          >
-            ✕
-          </button>
-        </form>
       </dialog>
     </React.Fragment>
   );

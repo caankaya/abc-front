@@ -5,7 +5,7 @@ export default function LevelButton() {
   const dispatch = useAppDispatch();
   const isChecked = useAppSelector((state) => state.session.levelButton);
   return (
-    <div className="level-switch-button">
+    <div className="level-switch-button mb-10">
       <div className="flex justify-center items-center gap-3 mt-3">
         <p
           className={`text-sm ${!isChecked ? "font-bold text-[#5e81ac]" : ""}`}

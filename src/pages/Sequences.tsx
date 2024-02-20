@@ -17,14 +17,16 @@ export default function Sequences() {
       <div className="flex flex-col gap-y-5 shadow items-center w-1/2 p-5 rounded-lg m-auto mt-5 max-sm:overflow-y-auto absolute top-1/3 tablet:w-[80%] tablet:top-16">
         {!sequences?.length ? (
           <>
-            <p className="text-sm">il n'y a pas de scénario enregistré</p>
+            <p className="text-sm tablet:btn-xs">
+              il n'y a pas de scénario enregistré
+            </p>
           </>
         ) : (
           <>
             <SequencesTables sequences={sequences} />
           </>
         )}
-        <Link to={"/"} className="btn btn-sm w-52">
+        <Link to={"/"} className="btn btn-sm w-52 tablet:btn-xs">
           Revenir à l'accueil
         </Link>
       </div>

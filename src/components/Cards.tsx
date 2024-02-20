@@ -14,7 +14,7 @@ export default function Cards({ cards }: { cards: ICards[] }) {
               <h2 className="card-title text-white">{card.name}</h2>
               <p className="card-text text-white">{card.comments}</p>
               <div className="card-actions justify-end">
-                <button className={`btn btn-sm normal-case`}>Activités</button>;
+                <button className={`btn btn-sm normal-case`}>Activités</button>
               </div>
             </div>
           </div>

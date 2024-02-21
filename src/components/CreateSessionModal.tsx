@@ -23,6 +23,7 @@ export default function CreateSessionModal({ card }: { card: ICard }) {
     formData.append("sequence_id", id?.toString() as string);
     dispatch(createSession(formData));
     formRef.current?.reset();
+    sessionStorage.removeItem("tool_id");
     closeModal("my_modal_9");
   };
 
@@ -36,6 +37,7 @@ export default function CreateSessionModal({ card }: { card: ICard }) {
           <button
             className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-white"
             onClick={() => {
+              sessionStorage.removeItem("tool_id");
               closeModal("my_modal_9");
             }}
           >

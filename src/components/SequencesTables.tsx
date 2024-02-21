@@ -6,8 +6,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import { useAppDispatch } from "../../commons/redux";
-import { getAllSequences } from "../../redux/reducers/sequences";
-import { ISequence } from "../@types/sequences";
+import {
+  getAllSequences,
+  getOneSequence,
+} from "../../redux/reducers/sequences";
+import { ISequences } from "../@types/sequences";
 import { useEffect } from "react";
 import DeleteSequenceModal from "./DeleteSequenceModal";
 import { openModal } from "../../commons/functions";
@@ -15,7 +18,7 @@ import { openModal } from "../../commons/functions";
 export default function SequencesTables({
   sequences,
 }: {
-  sequences: ISequence[];
+  sequences: ISequences[];
 }) {
   const dispatch = useAppDispatch();
   useEffect(() => {
@@ -46,7 +49,16 @@ export default function SequencesTables({
                   <td>{sequence.name}</td>
                   <td>{moment(sequence.created_at).format("DD/MM/YYYY")}</td>
                   <td>
-                    <Link to={`/scenarios/${sequence.id}`}>
+                    <Link
+                      to={`/scenarios/${sequence.id}`}
+                      onClick={() => {
+                        sessionStorage.setItem(
+                          "sequence_id",
+                          sequence.id.toString()
+                        );
+                        dispatch(getOneSequence(sequence.id));
+                      }}
+                    >
                       Voir le scénario
                       <FontAwesomeIcon
                         icon={faArrowUpRightFromSquare}

@@ -5,7 +5,7 @@ import CreateSessionModal from "./CreateSessionModal";
 
 export default function CardModal() {
   const dispatch = useAppDispatch();
-  const card = useAppSelector((state) => state.session.card);
+  const card = useAppSelector((state) => state.card.card);
   const isChecked = useAppSelector((state) => state.session.levelButton);
 
   return (

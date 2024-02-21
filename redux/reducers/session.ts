@@ -4,49 +4,39 @@ import {
   createReducer,
 } from "@reduxjs/toolkit";
 import instance from "../../commons/axios";
-import { ICards } from "../../src/@types/cards";
-import { ICard } from "../../src/@types/card";
+import { ISequence } from "../../src/@types/sequence";
 
 interface SessionState {
   levelButton: boolean;
-  cards: ICards[] | null;
-  card: ICard | null;
+  session: ISequence | null;
 }
 
 const initialState: SessionState = {
   levelButton: false,
-  cards: null,
-  card: null,
+  session: null,
 };
 
 export const toggleLevelButton = createAction<boolean>(
   "session/Level button toggled"
 );
 
-export const getCards = createAsyncThunk(
-  "Session/fetching all cards",
-  async () => {
-    const response = await instance.get("/storyBoard/cards");
-    return response.data;
-  }
-);
-
-export const getCard = createAsyncThunk(
-  "Session/fetching a card by id",
-  async (cardId: number) => {
-    const response = await instance.get(`/storyBoard/cards/${cardId}`);
-    return response.data;
-  }
-);
-
 export const createSession = createAsyncThunk(
   "Session/The session has created",
   async (formData: FormData) => {
     const objData = Object.fromEntries(formData);
-    console.log("objData :", objData);
     const response = await instance.post(
       `/user/${sessionStorage.getItem("id")}/session`,
       objData
+    );
+    return response.data;
+  }
+);
+
+export const getSession = createAsyncThunk(
+  "Session reducer / Get one session ", // nom de l'action
+  async (sessionId: number) => {
+    const response = await instance.get(
+      `/user/${localStorage.getItem("id")}/session/${sessionId}`
     );
     return response.data;
   }
@@ -59,14 +49,8 @@ const sessionReducer = createReducer(initialState, (builder) => {
     .addCase(toggleLevelButton, (state, action) => {
       state.levelButton = action.payload;
     })
-    .addCase(getCards.fulfilled, (state, action) => {
-      state.cards = action.payload;
-    })
-    .addCase(getCard.fulfilled, (state, action) => {
-      state.card = action.payload[0];
-    })
-    .addCase(clearCardModal, (state) => {
-      state.card = null;
+    .addCase(getSession.fulfilled, (state, action) => {
+      state.levelButton = action.payload;
     });
 });
 

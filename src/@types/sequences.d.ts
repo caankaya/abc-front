@@ -1,4 +1,4 @@
-export interface ISequence {
+export interface ISequences {
   id: number;
   name: string;
   user_id: number;

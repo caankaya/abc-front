@@ -59,6 +59,16 @@ export const deleteSequence = createAsyncThunk(
   }
 );
 
+export const deleteSession = createAsyncThunk(
+  "Session reducer/deleteSession", // nom de l'action
+  async (sessionId: number) => {
+    const response = await instance.delete(
+      `/user/${sessionStorage.getItem("id")}/session/${sessionId}`
+    );
+    return response.data;
+  }
+);
+
 const sequencesReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(getAllSequences.fulfilled, (state, action) => {
@@ -71,6 +81,13 @@ const sequencesReducer = createReducer(initialState, (builder) => {
       if (state.sequences) {
         state.sequences = state?.sequences.filter(
           (sequence) => sequence.id !== action.meta.arg
+        );
+      }
+    })
+    .addCase(deleteSession.fulfilled, (state, action) => {
+      if (state.sequence) {
+        state.sequence[0].sessions = state?.sequence[0].sessions.filter(
+          (session) => session.session_id !== action.meta.arg
         );
       }
     });

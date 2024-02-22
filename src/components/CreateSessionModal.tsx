@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAppDispatch } from "../../commons/redux";
 import { useRef, useState } from "react";
 import { ICard } from "../@types/card";
@@ -7,6 +7,7 @@ import { createSession } from "../../redux/reducers/session";
 
 export default function CreateSessionModal({ card }: { card: ICard }) {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { id } = useParams();
   const [isPresentiel, setIsPresentiel] = useState(true);
   const [isGroupe, setIsGroupe] = useState(true);
@@ -23,7 +24,6 @@ export default function CreateSessionModal({ card }: { card: ICard }) {
     formData.append("sequence_id", id?.toString() as string);
     dispatch(createSession(formData));
     formRef.current?.reset();
-    sessionStorage.removeItem("tool_id");
     closeModal("my_modal_9");
   };
 
@@ -44,7 +44,16 @@ export default function CreateSessionModal({ card }: { card: ICard }) {
             ✕
           </button>
         </form>
-        <form method="post" onSubmit={handleFormSubmit} ref={formRef}>
+        <form
+          method="post"
+          onSubmit={(event) => {
+            handleFormSubmit(event);
+            setTimeout(() => {
+              window.location.href = `/scenarios/${id}`;
+            }, 100);
+          }}
+          ref={formRef}
+        >
           <label
             htmlFor="name"
             className="block mb-2 text-sm font-medium text-white tablet:text-xs"

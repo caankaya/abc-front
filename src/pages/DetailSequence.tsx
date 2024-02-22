@@ -10,7 +10,6 @@ export default function DetailSequence() {
   const dispatch = useAppDispatch();
   const cards = useAppSelector((state) => state.card.cards);
   const sessions = useAppSelector((state) => state.sequence.sequence);
-  console.log("sessions :", sessions);
   const sequenceId = Number(sessionStorage.getItem("sequence_id"));
 
   useEffect(() => {

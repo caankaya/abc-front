@@ -18,16 +18,16 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-export function RightBarChart({ sessions }: { sessions: ISequence[] }) {
-  let groupe: number = 0;
-  let alone: number = 0;
+export function LeftBarChart({ sessions }: { sessions: ISequence[] }) {
+  let faceToFace: number = 0;
+  let remote: number = 0;
 
   sessions.map((session) =>
     session.sessions.map((work) => {
-      if (work.is_group_work) {
-        return (groupe += work.time);
+      if (work.is_face_to_face) {
+        return (faceToFace += work.time);
       }
-      return (alone += work.time);
+      return (remote += work.time);
     })
   );
 
@@ -43,24 +43,24 @@ export function RightBarChart({ sessions }: { sessions: ISequence[] }) {
     },
   };
 
-  const labels = ["Groupe", "Individuel"];
+  const labels = ["Présentiel", "Distanciel"];
 
   const data = {
     labels,
     datasets: [
       {
-        label: "Groupe",
-        data: [groupe, 0],
-        backgroundColor: ["rgb(54, 162, 235, 0.2)"],
-        borderColor: ["rgb(54, 162, 235)"],
+        label: "Présentiel",
+        data: [faceToFace, 0],
+        backgroundColor: ["rgba(255, 99, 132, 0.5)"],
+        borderColor: ["rgb(255, 99, 132)"],
         borderWidth: 1,
         barThickness: 80,
       },
       {
-        label: "Individuel",
-        data: [0, alone],
-        backgroundColor: ["rgba(153, 102, 255, 0.2)"],
-        borderColor: ["rgb(153, 102, 255)"],
+        label: "Distanciel",
+        data: [0, remote],
+        backgroundColor: ["rgba(75, 192, 192, 0.5)"],
+        borderColor: ["rgb(75, 192, 192)"],
         borderWidth: 1,
         barThickness: 80,
       },

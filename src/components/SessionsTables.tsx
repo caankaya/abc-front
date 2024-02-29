@@ -57,12 +57,7 @@ export default function SessionsTables({
                     className="btn bg-transparent border-none"
                     onClick={() => {}}
                   >
-                    <FontAwesomeIcon
-                      icon={faPencil}
-                      beat
-                      size="lg"
-                      style={{ color: "#000000" }}
-                    />
+                    <FontAwesomeIcon icon={faPencil} beat size="lg" />
                   </button>
                 </td>
                 <td

@@ -15,6 +15,7 @@ export default function CreateSessionModal({ card }: { card: ICard }) {
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formElement = e.currentTarget;
+    console.log("formElement :", formElement);
     const formData = new FormData(formElement);
     formData.append("is_face_to_face", isPresentiel.toString());
     formData.append("is_group_work", isGroupe.toString());
@@ -27,7 +28,7 @@ export default function CreateSessionModal({ card }: { card: ICard }) {
   };
 
   return (
-    <dialog id="my_modal_9" className="modal">
+    <dialog id="my_modal_9" className="modal modal-bottom sm:modal-middle">
       <div
         className="modal-box w-2/6 max-w-5xl tablet:w-4/6"
         style={{ backgroundColor: card.get_activities.color }}
@@ -38,6 +39,7 @@ export default function CreateSessionModal({ card }: { card: ICard }) {
             onClick={() => {
               sessionStorage.removeItem("tool_id");
               closeModal("my_modal_9");
+              formRef.current?.reset();
             }}
           >
             ✕

@@ -1,13 +1,12 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useAppDispatch } from "../../commons/redux";
 import { useRef, useState } from "react";
 import { ICard } from "../@types/card";
 import { closeModal } from "../../commons/functions";
-import { createSession } from "../../redux/reducers/session";
+import { createSession } from "../../redux/reducers/sequences";
 
 export default function CreateSessionModal({ card }: { card: ICard }) {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const { id } = useParams();
   const [isPresentiel, setIsPresentiel] = useState(true);
   const [isGroupe, setIsGroupe] = useState(true);

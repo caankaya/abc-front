@@ -20,18 +20,6 @@ export const toggleLevelButton = createAction<boolean>(
   "session/Level button toggled"
 );
 
-export const createSession = createAsyncThunk(
-  "Session/The session has created",
-  async (formData: FormData) => {
-    const objData = Object.fromEntries(formData);
-    const response = await instance.post(
-      `/user/${sessionStorage.getItem("id")}/session`,
-      objData
-    );
-    return response.data;
-  }
-);
-
 export const getSession = createAsyncThunk(
   "Session reducer / Get one session ", // nom de l'action
   async (sessionId: number) => {

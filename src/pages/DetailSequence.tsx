@@ -16,11 +16,14 @@ export default function DetailSequence() {
     dispatch(getCards());
     dispatch(getOneSequence(sequenceId));
   }, []);
+
   return (
     <div className="DetailSequence">
       <LevelButton />
       {cards && cards.length !== 0 && <Cards cards={cards} />}
-      {sessions && <SessionsTables sequence={sessions} />}
+      {sessions && sessions.length !== 0 && (
+        <SessionsTables sequence={sessions} />
+      )}
     </div>
   );
 }

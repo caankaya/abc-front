@@ -2,6 +2,7 @@ import { createAsyncThunk, createReducer } from "@reduxjs/toolkit";
 import instance from "../../commons/axios";
 import { ISequences } from "../../src/@types/sequences";
 import { ISequence } from "../../src/@types/sequence";
+import { useAppDispatch } from "../../commons/redux";
 
 interface SequencesState {
   sequences: ISequences[] | null;
@@ -59,6 +60,18 @@ export const deleteSequence = createAsyncThunk(
   }
 );
 
+export const createSession = createAsyncThunk(
+  "Session/The session has created",
+  async (formData: FormData) => {
+    const objData = Object.fromEntries(formData);
+    const response = await instance.post(
+      `/user/${sessionStorage.getItem("id")}/session`,
+      objData
+    );
+    return response.data;
+  }
+);
+
 export const deleteSession = createAsyncThunk(
   "Session reducer/deleteSession", // nom de l'action
   async (sessionId: number) => {
@@ -76,6 +89,10 @@ const sequencesReducer = createReducer(initialState, (builder) => {
     })
     .addCase(getOneSequence.fulfilled, (state, action) => {
       state.sequence = action.payload;
+    })
+    .addCase(createSession.fulfilled, (state, action) => {
+      console.log("state :", state);
+      console.log("action :", action);
     })
     .addCase(deleteSequence.fulfilled, (state, action) => {
       if (state.sequences) {

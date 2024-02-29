@@ -18,7 +18,7 @@ export default function DetailSequence() {
   }, []);
 
   return (
-    <div className="DetailSequence">
+    <div className="DetailSequence mb-20">
       <LevelButton />
       {cards && cards.length !== 0 && <Cards cards={cards} />}
       {sessions && sessions.length !== 0 && (

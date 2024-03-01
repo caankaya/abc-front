@@ -96,29 +96,31 @@ export default function Header() {
           </svg>
         </label>
         {/* Boutton burger */}
-        <button
-          type="button"
-          className="lg:focus:outline-none flex flex-col mb-2 ml-10"
-          onClick={() => {
-            dispatch(togglerDropdown(!isOpen));
-          }}
-        >
-          <span
-            className={`block h-[2px] w-5 bg-base-content rounded-full  transition-all duration-1000 transform ${
-              isOpen ? "rotate-45 translate-y-2 mt-1" : "mt-2"
-            }`}
-          ></span>
-          <span
-            className={`block h-[2px] w-5 bg-base-content rounded-full mt-1 transition-all duration-1000 ${
-              isOpen ? "opacity-0" : ""
-            }`}
-          ></span>
-          <span
-            className={`block h-[2px] w-5 bg-base-content rounded-full  transition-all duration-1000 transform ${
-              isOpen ? "-rotate-45 -translate-y-2 mt-2" : "mt-1"
-            }`}
-          ></span>
-        </button>
+        {user && (
+          <button
+            type="button"
+            className="lg:focus:outline-none flex flex-col mb-2 ml-10"
+            onClick={() => {
+              dispatch(togglerDropdown(!isOpen));
+            }}
+          >
+            <span
+              className={`block h-[2px] w-5 bg-base-content rounded-full  transition-all duration-1000 transform ${
+                isOpen ? "rotate-45 translate-y-2 mt-1" : "mt-2"
+              }`}
+            ></span>
+            <span
+              className={`block h-[2px] w-5 bg-base-content rounded-full mt-1 transition-all duration-1000 ${
+                isOpen ? "opacity-0" : ""
+              }`}
+            ></span>
+            <span
+              className={`block h-[2px] w-5 bg-base-content rounded-full  transition-all duration-1000 transform ${
+                isOpen ? "-rotate-45 -translate-y-2 mt-2" : "mt-1"
+              }`}
+            ></span>
+          </button>
+        )}
         {/* Menu déroulant */}
         <div
           style={{ zIndex: 999 }}

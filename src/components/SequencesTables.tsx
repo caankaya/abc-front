@@ -15,6 +15,7 @@ import { ISequences } from "../@types/sequences";
 import { useEffect } from "react";
 import DeleteSequenceModal from "./DeleteSequenceModal";
 import { openModal } from "../../commons/functions";
+import UpdateSequenceModal from "./UpdateSequenceModal";
 
 export default function SequencesTables({
   sequences,
@@ -22,6 +23,7 @@ export default function SequencesTables({
   sequences: ISequences[];
 }) {
   const dispatch = useAppDispatch();
+
   useEffect(() => {
     dispatch(getAllSequences());
   }, [dispatch]);
@@ -40,7 +42,11 @@ export default function SequencesTables({
                   <th>
                     <button
                       onClick={() => {
-                        openModal("my_modal_7");
+                        openModal("delete-sequence");
+                        sessionStorage.setItem(
+                          "sequenceId",
+                          sequence.id.toString()
+                        );
                       }}
                     >
                       <FontAwesomeIcon icon={faTrashCan} />
@@ -49,7 +55,11 @@ export default function SequencesTables({
                   <th>
                     <button
                       onClick={() => {
-                        openModal("my_modal_7");
+                        openModal("update-sequence");
+                        sessionStorage.setItem(
+                          "sequenceId",
+                          sequence.id.toString()
+                        );
                       }}
                     >
                       <FontAwesomeIcon icon={faPen} beat />
@@ -80,10 +90,9 @@ export default function SequencesTables({
               ))}
           </tbody>
         </table>
+        <DeleteSequenceModal />
+        <UpdateSequenceModal />
       </div>
-      {sequences.map((sequence) => (
-        <DeleteSequenceModal key={sequence.id} sequenceId={sequence.id} />
-      ))}
     </div>
   );
 }

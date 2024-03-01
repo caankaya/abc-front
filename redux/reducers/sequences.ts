@@ -19,8 +19,6 @@ const initialState: SequencesState = {
   session: null,
 };
 
-
-
 export const getOneSession = createAction("Sequence/Get one session");
 
 export const getAllSequences = createAsyncThunk(
@@ -63,14 +61,11 @@ export const updateSequence = createAsyncThunk(
   "Sequence/The sequance has created", // nom de l'action
   async (sequenceData: FormData) => {
     const objData = Object.fromEntries(sequenceData);
-    const userId = {
-      user_id: Number(sessionStorage.getItem("id")),
-    };
-    Object.assign(objData, userId);
     const { data } = await instance.put(
-      `/user/{{userId}}/sequence/{{sequenceId}}/`,
+      `/user/${sessionStorage.getItem("id")}/sequence/${sessionStorage.getItem("sequenceId")}`,
       objData
     );
+    console.log("data :", data);
     return data;
   }
 );
@@ -127,12 +122,17 @@ const sequencesReducer = createReducer(initialState, (builder) => {
     .addCase(getOneSequence.fulfilled, (state, action) => {
       state.sequence = action.payload;
     })
-    .addCase(deleteSequence.fulfilled, (state, action) => {
+    .addCase(deleteSequence.fulfilled, (state) => {
       if (state.sequences) {
         state.sequences = state?.sequences.filter(
-          (sequence) => sequence.id !== action.meta.arg
+          (sequence) =>
+            sequence.id !== Number(sessionStorage.getItem("sequenceId"))
         );
       }
+    })
+    .addCase(updateSequence.fulfilled, (state, action) => {
+      console.log("state :", state);
+      console.log("action :", action);
     })
     .addCase(deleteSession.fulfilled, (state, action) => {
       if (state.sequence) {
@@ -153,7 +153,7 @@ const sequencesReducer = createReducer(initialState, (builder) => {
           (session) => session !== undefined
         ) as Session[];
       }
-    })
+    });
 });
 
 export default sequencesReducer;

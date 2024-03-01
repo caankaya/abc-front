@@ -4,7 +4,7 @@ import LevelButton from "../components/LevelButton";
 import { useAppDispatch, useAppSelector } from "../../commons/redux";
 import { getCards } from "../../redux/reducers/card";
 import SessionsTables from "../components/SessionsTables";
-import { getOneSequence, getOneSession } from "../../redux/reducers/sequences";
+import { getOneSequence } from "../../redux/reducers/sequences";
 import { LeftBarChart } from "../components/LeftBarChart";
 import { RightBarChart } from "../components/RightBarChart";
 import PieChart from "../components/PieChart";

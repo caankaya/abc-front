@@ -31,7 +31,7 @@ export default function App() {
 
   return (
     <main className="app flex justify-center tablet:mb-[30rem]">
-      <div className="grid grid-cols-2 gap-5 shadow p-5 rounded-lg w-1/2 mt-5 absolute top-1/3 tablet:top-16 tablet:w-[80%] border-[1px]">
+      <div className="grid grid-cols-2 gap-5 shadow p-5 rounded-lg w-1/2 mt-5 absolute top-1/3 border-[1px] tablet:top-16 tablet:w-[80%] tablet:mt-16">
         <div className="left-container p-5 border-r-2">
           <p className="text-sm text-justify tablet:text-xs">
             Vous devez préparer un nouveau cours et vous aimeriez innover en
@@ -60,7 +60,7 @@ export default function App() {
                   type="text"
                   id="username"
                   name="username"
-                  className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 tablet:text-xs"
+                  className="bg-base-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 tablet:text-xs"
                   placeholder="pseudo"
                   autoComplete="username"
                   value={username}
@@ -71,7 +71,7 @@ export default function App() {
             </div>
             <div className="mb-6">
               <label
-                className="block mb-2 text-sm font-medium text-gray-900 tablet:text-xs"
+                className="block mb-2 text-sm font-medium tablet:text-xs"
                 htmlFor="password"
               >
                 Votre mot de passe
@@ -79,7 +79,7 @@ export default function App() {
                   type="password"
                   id="password"
                   name="password"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 tablet:text-xs"
+                  className="bg-base-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 tablet:text-xs"
                   placeholder="mot de passe"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}

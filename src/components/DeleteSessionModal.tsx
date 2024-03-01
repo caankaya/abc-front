@@ -2,26 +2,24 @@ import { useAppDispatch } from "../../commons/redux";
 import { closeModal } from "../../commons/functions";
 import { deleteSession } from "../../redux/reducers/sequences";
 
-function DeleteSessionModal({
-  sessionId,
-  sessionName,
-}: {
-  sessionId: number;
-  sessionName: string;
-}) {
+function DeleteSessionModal() {
   const dispatch = useAppDispatch();
 
   return (
     <dialog id="delete-session" className="modal w-[60%] m-auto">
       <div className="modal-box">
         <h3 className="font-bold text-sm text-center error-line mb-5 tablet:text-xs">
-          Vous êtes sur le point de supprimer la session "{sessionName}" !
+          Vous êtes sur le point de supprimer la session !
         </h3>
         <section className="button-container flex justify-evenly">
           <button
             className="btn btn-error btn-sm text-white tablet:text-xs"
             onClick={() => {
-              dispatch(deleteSession(sessionId));
+              dispatch(
+                deleteSession(Number(localStorage.getItem("sessionId")))
+              );
+              localStorage.removeItem("sessionId");
+
               closeModal("delete-session");
             }}
           >

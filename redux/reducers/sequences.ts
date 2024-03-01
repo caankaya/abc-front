@@ -1,18 +1,25 @@
-import { createAsyncThunk, createReducer } from "@reduxjs/toolkit";
+import {
+  createAction,
+  createAsyncThunk,
+  createReducer,
+} from "@reduxjs/toolkit";
 import instance from "../../commons/axios";
 import { ISequences } from "../../src/@types/sequences";
-import { ISequence } from "../../src/@types/sequence";
-import { useAppDispatch } from "../../commons/redux";
+import { ISequence, Session } from "../../src/@types/sequence";
 
 interface SequencesState {
   sequences: ISequences[] | null;
   sequence: ISequence[] | null;
+  session: Session[] | null;
 }
 
 const initialState: SequencesState = {
   sequences: null,
   sequence: null,
+  session: null,
 };
+
+export const clearSessionArray = createAction("Clearing session array");
 
 export const getAllSequences = createAsyncThunk(
   "/getAllSequences", // nom de l'action
@@ -60,6 +67,8 @@ export const deleteSequence = createAsyncThunk(
   }
 );
 
+export const getOneSession = createAction("Sequence/Get one session");
+
 export const createSession = createAsyncThunk(
   "Session/The session has created",
   async (formData: FormData) => {
@@ -82,6 +91,18 @@ export const deleteSession = createAsyncThunk(
   }
 );
 
+export const updateSession = createAsyncThunk(
+  "Session/The session has updated",
+  async (formData: FormData) => {
+    const objData = Object.fromEntries(formData);
+    const response = await instance.put(
+      `/user/${sessionStorage.getItem("id")}/session`,
+      objData
+    );
+    return response.data;
+  }
+);
+
 const sequencesReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(getAllSequences.fulfilled, (state, action) => {
@@ -89,10 +110,6 @@ const sequencesReducer = createReducer(initialState, (builder) => {
     })
     .addCase(getOneSequence.fulfilled, (state, action) => {
       state.sequence = action.payload;
-    })
-    .addCase(createSession.fulfilled, (state, action) => {
-      console.log("state :", state);
-      console.log("action :", action);
     })
     .addCase(deleteSequence.fulfilled, (state, action) => {
       if (state.sequences) {
@@ -107,6 +124,22 @@ const sequencesReducer = createReducer(initialState, (builder) => {
           (session) => session.session_id !== action.meta.arg
         );
       }
+    })
+    .addCase(getOneSession, (state) => {
+      if (state.sequence && state.sequence.length > 0) {
+        const foundSessions = state.sequence.map((seq) =>
+          seq?.sessions.find(
+            (session) =>
+              session.session_id === Number(localStorage.getItem("sessionId"))
+          )
+        );
+        state.session = foundSessions.filter(
+          (session) => session !== undefined
+        ) as Session[];
+      }
+    })
+    .addCase(clearSessionArray, (state) => {
+      state.session = null;
     });
 });
 

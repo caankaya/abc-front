@@ -1,14 +1,21 @@
 import { faPencil, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ISequence } from "../@types/sequence";
-import { openModal } from "../../commons/functions";
 import DeleteSessionModal from "./DeleteSessionModal";
+import { openModal } from "../../commons/functions";
+import UpdateSessionModal from "./UpdateSessionModal";
+import { useAppDispatch, useAppSelector } from "../../commons/redux";
+import {
+  clearSessionArray,
+  getOneSession,
+} from "../../redux/reducers/sequences";
 
 export default function SessionsTables({
   sequence,
 }: {
   sequence: ISequence[];
 }) {
+  const dispatch = useAppDispatch();
   return (
     <div className="tablet:overflow-x-scroll">
       <table className="table w-full">
@@ -46,6 +53,10 @@ export default function SessionsTables({
                   <button
                     className="btn bg-transparent border-none"
                     onClick={() => {
+                      localStorage.setItem(
+                        "sessionId",
+                        session.session_id.toString()
+                      );
                       openModal("delete-session");
                     }}
                   >
@@ -55,7 +66,16 @@ export default function SessionsTables({
                 <td>
                   <button
                     className="btn bg-transparent border-none"
-                    onClick={() => {}}
+                    onClick={() => {
+                      localStorage.setItem(
+                        "sessionId",
+                        session.session_id.toString()
+                      );
+                      dispatch(getOneSession());
+                      setTimeout(() => {
+                        openModal("update-session");
+                      }, 100);
+                    }}
                   >
                     <FontAwesomeIcon icon={faPencil} beat size="lg" />
                   </button>
@@ -94,10 +114,8 @@ export default function SessionsTables({
                   <p>{session.equipment}</p>
                 </td>
                 <td>
-                  <DeleteSessionModal
-                    sessionId={session.session_id}
-                    sessionName={session.session_name}
-                  />
+                  <DeleteSessionModal />
+                  <UpdateSessionModal />
                 </td>
               </tr>
             ))}

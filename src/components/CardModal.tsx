@@ -1,10 +1,8 @@
 import { closeModal, openModal } from "../../commons/functions";
-import { useAppDispatch, useAppSelector } from "../../commons/redux";
-import { clearCardModal } from "../../redux/reducers/session";
+import { useAppSelector } from "../../commons/redux";
 import CreateSessionModal from "./CreateSessionModal";
 
 export default function CardModal() {
-  const dispatch = useAppDispatch();
   const card = useAppSelector((state) => state.card.card);
   const isChecked = useAppSelector((state) => state.session.levelButton);
 
@@ -19,7 +17,6 @@ export default function CardModal() {
             <button
               className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-white"
               onClick={() => {
-                dispatch(clearCardModal());
                 closeModal("my_modal_8");
               }}
             >

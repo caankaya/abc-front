@@ -4,7 +4,7 @@ import LevelButton from "../components/LevelButton";
 import { useAppDispatch, useAppSelector } from "../../commons/redux";
 import { getCards } from "../../redux/reducers/card";
 import SessionsTables from "../components/SessionsTables";
-import { getOneSequence } from "../../redux/reducers/sequences";
+import { getOneSequence, getOneSession } from "../../redux/reducers/sequences";
 import { LeftBarChart } from "../components/LeftBarChart";
 import { RightBarChart } from "../components/RightBarChart";
 import PieChart from "../components/PieChart";
@@ -27,11 +27,17 @@ export default function DetailSequence() {
       {sessions && sessions.length !== 0 && (
         <SessionsTables sequence={sessions} />
       )}
-      {sessions && sessions.length !== 0 && (
+      {sessions &&
+      sessions.length !== 0 &&
+      sessions[0].sessions.length !== 0 ? (
         <div className="flex justify-evenly">
           <LeftBarChart sessions={sessions} />
           <PieChart sessions={sessions} />
           <RightBarChart sessions={sessions} />
+        </div>
+      ) : (
+        <div className="flex justify-evenly mt-10">
+          <p>Vous n'avez pas de session</p>
         </div>
       )}
     </div>

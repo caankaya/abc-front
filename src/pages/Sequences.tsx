@@ -3,6 +3,7 @@ import SequencesTables from "../components/SequencesTables";
 import { useAppDispatch, useAppSelector } from "../../commons/redux";
 import { useEffect } from "react";
 import { getAllSequences } from "../../redux/reducers/sequences";
+import { openModal } from "../../commons/functions";
 
 export default function Sequences() {
   const dispatch = useAppDispatch();
@@ -10,7 +11,7 @@ export default function Sequences() {
 
   useEffect(() => {
     dispatch(getAllSequences());
-  }, [dispatch]);
+  }, []);
 
   return (
     <div className="flex flex-col items-center w-full">
@@ -26,9 +27,19 @@ export default function Sequences() {
             <SequencesTables sequences={sequences} />
           </>
         )}
-        <Link to={"/"} className="btn btn-sm w-52 tablet:btn-xs">
-          Revenir à l'accueil
-        </Link>
+        <div className="flex gap-5">
+          <Link to={"/"} className="btn btn-sm w-52 tablet:btn-xs">
+            Revenir à l'accueil
+          </Link>
+          <button
+            className="btn btn-sm w-52 tablet:btn-xs"
+            onClick={() => {
+              openModal("my_modal_6");
+            }}
+          >
+            Créer un nouveau scénario
+          </button>
+        </div>
       </div>
     </div>
   );

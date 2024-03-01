@@ -4,10 +4,10 @@ import { openModal } from "../../commons/functions";
 
 export default function App() {
   const user = useAppSelector((state) => state.user.logged);
+  const alert = useAppSelector((state) => state.user.connectionAlert);
 
   return (
     <main className="app flex flex-col items-center tablet:mb-[30rem]">
-      
       <div className="flex flex-col gap-y-5 shadow p-5 rounded-lg w-1/2 m-auto mt-5 max-sm:overflow-y-auto absolute top-1/3 tablet:top-16 tablet:w-[80%]">
         <p className="text-sm text-justify tablet:text-xs">
           Vous devez préparer un nouveau cours et vous aimeriez innover en

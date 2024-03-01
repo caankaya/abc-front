@@ -12,6 +12,7 @@ interface UserState {
   username: string | null;
   accessToken: string | null;
   refreshToken: string | null;
+  connectionAlert: boolean;
 }
 
 const initialState: UserState = {
@@ -20,6 +21,7 @@ const initialState: UserState = {
   username: sessionStorage.getItem("username") || null,
   accessToken: sessionStorage.getItem("accessToken") || null,
   refreshToken: sessionStorage.getItem("refreshToken") || null,
+  connectionAlert: false,
 };
 
 interface JwtPayload {
@@ -50,6 +52,9 @@ const userReducer = createReducer(initialState, (builder) => {
       const decodedToken: JwtPayload = jwtDecode(accessToken);
       sessionStorage.setItem("id", decodedToken.data.id);
       sessionStorage.setItem("username", decodedToken.data.username);
+    })
+    .addCase(login.rejected, (state) => {
+      state.connectionAlert = true;
     })
     .addCase(logout, (state) => {
       state.logged = false;

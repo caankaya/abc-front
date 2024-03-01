@@ -1,7 +1,10 @@
 import { FormEvent, useState } from "react";
 import { useAppDispatch } from "../../commons/redux";
 import { closeModal } from "../../commons/functions";
-import { createSequence } from "../../redux/reducers/sequences";
+import {
+  createSequence,
+  getAllSequences,
+} from "../../redux/reducers/sequences";
 import { useNavigate } from "react-router-dom";
 
 export default function CreateSequenceModal() {
@@ -13,7 +16,7 @@ export default function CreateSequenceModal() {
     event.preventDefault();
     const form = event.currentTarget;
     const formData = new FormData(form);
-    dispatch(createSequence(formData));
+    dispatch(createSequence(formData)).then(() => dispatch(getAllSequences()));
     setSequenceName("");
     closeModal("my_modal_6");
     setTimeout(() => {

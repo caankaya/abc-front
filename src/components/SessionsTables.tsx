@@ -6,7 +6,7 @@ import { openModal } from "../../commons/functions";
 import UpdateSessionModal from "./sub-components-session-modal/UpdateSessionModal";
 import { useAppDispatch, useAppSelector } from "../../commons/redux";
 import { getOneSession } from "../../redux/reducers/sequences";
-import { openUpdateModal } from "../../redux/reducers/session";
+import { openUpdateModal } from "../../redux/reducers/other";
 
 export default function SessionsTables({
   sequence,

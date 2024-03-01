@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "../../commons/redux";
-import { toggleLevelButton } from "../../redux/reducers/session";
+import { toggleLevelButton } from "../../redux/reducers/other";
 
 export default function LevelButton() {
   const dispatch = useAppDispatch();

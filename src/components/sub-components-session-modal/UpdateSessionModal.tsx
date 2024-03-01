@@ -5,7 +5,7 @@ import {
   getOneSequence,
   updateSession,
 } from "../../../redux/reducers/sequences";
-import { openUpdateModal } from "../../../redux/reducers/session";
+import { openUpdateModal } from "../../../redux/reducers/other";
 
 export default function UpdateSessionModal({ isOpen }: { isOpen: boolean }) {
   const dispatch = useAppDispatch();

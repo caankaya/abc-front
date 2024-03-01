@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { logout } from "../../redux/reducers/user";
 import { openModal } from "../../commons/functions";
+import logo from "../assets/logo 2.png";
 
 export default function Header() {
   const dispatch = useAppDispatch();
@@ -38,7 +39,7 @@ export default function Header() {
         <div className="flex-1">
           <div className="w-26">
             <Link to={"/"}>
-              <img src="/src/assets/logo.png" alt="" width={100} height={50} />
+              <img src={logo} alt="logo" className="w-24" />
             </Link>
           </div>
           <a

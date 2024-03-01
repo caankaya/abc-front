@@ -49,8 +49,8 @@ export default function CardModal() {
                         type="button"
                         onClick={() => {
                           sessionStorage.setItem("tool_id", e.tool_id);
-                          openModal("create-session");
                           closeModal("tool-modal");
+                          openModal("create-session");
                         }}
                       >
                         {e.tool_name}
@@ -64,8 +64,8 @@ export default function CardModal() {
                       type="button"
                       onClick={() => {
                         sessionStorage.setItem("tool_id", e.tool_id);
-                        openModal("create-session");
                         closeModal("tool-modal");
+                        openModal("create-session");
                       }}
                     >
                       {e.tool_name}

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "www.lodev.tech/api",
+  baseURL: "https://www.lodev.tech/api",
 });
 
 instance.interceptors.request.use(

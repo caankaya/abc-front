@@ -40,6 +40,15 @@ export default function App() {
             d’un module dont vous aimeriez repenser l’organisation avec les
             enseignants, mais vous ne savez pas comment vous y prendre ? Alors
             l’application en ligne « ABC Learning » peuvent vous aider.
+            <br />
+            <br />
+            <p>Pour essayer l'application voici les identifiants:</p>
+            <p>
+              <strong>Identifiant</strong> : Can
+            </p>
+            <p>
+              <strong>Mot de passe</strong> : &CanAbc123
+            </p>
           </p>
         </div>
         <div className="right-container">

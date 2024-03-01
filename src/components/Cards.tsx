@@ -1,6 +1,6 @@
 import { openModal } from "../../commons/functions";
 import { useAppDispatch } from "../../commons/redux";
-import { getCard } from "../../redux/reducers/card";
+import { clearCardModal, getCard } from "../../redux/reducers/card";
 import { ICards } from "../@types/cards";
 import CardModal from "./CardModal";
 
@@ -25,7 +25,9 @@ export default function Cards({ cards }: { cards: ICards[] }) {
                   className="btn btn-sm normal-case tablet:btn-xs"
                   onClick={() => {
                     dispatch(getCard(card.id));
-                    openModal("tool-modal");
+                    setTimeout(() => {
+                      openModal("tool-modal");
+                    }, 100);
                   }}
                 >
                   Activités

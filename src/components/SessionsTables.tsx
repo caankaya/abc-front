@@ -16,6 +16,7 @@ export default function SessionsTables({
   const dispatch = useAppDispatch();
   const isOpen = useAppSelector((state) => state.session.updateModal);
   const sessionAlert = useAppSelector((state) => state.sequence.sessionAlert);
+
   return (
     sequence[0].sessions.length > 0 && (
       <div className="tablet:overflow-x-scroll">

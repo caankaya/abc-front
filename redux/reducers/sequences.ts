@@ -24,8 +24,6 @@ const initialState: SequencesState = {
 };
 
 export const getOneSession = createAction("Sequence/Get one session");
-export const clearSequenceAlert = createAction("Clearing sequence alert");
-export const clearSessionAlert = createAction("Clearing session alert");
 
 export const getAllSequences = createAsyncThunk(
   "/getAllSequences", // nom de l'action
@@ -48,7 +46,7 @@ export const getOneSequence = createAsyncThunk(
 );
 
 export const createSequence = createAsyncThunk(
-  "Sequence/The sequance has created", // nom de l'action
+  "Sequence/The sequence has created", // nom de l'action
   async (sequenceData: FormData) => {
     const objData = Object.fromEntries(sequenceData);
     const userId = {
@@ -64,14 +62,14 @@ export const createSequence = createAsyncThunk(
 );
 
 export const updateSequence = createAsyncThunk(
-  "Sequence/The sequance has created", // nom de l'action
+  "Sequence/The sequence has updated", // nom de l'action
   async (sequenceData: FormData) => {
     const objData = Object.fromEntries(sequenceData);
     const { data } = await instance.put(
       `/user/${sessionStorage.getItem("id")}/sequence/${sessionStorage.getItem("sequenceId")}`,
       objData
     );
-    console.log("data :", data);
+
     return data;
   }
 );
@@ -142,9 +140,11 @@ const sequencesReducer = createReducer(initialState, (builder) => {
     .addCase(createSession.rejected, (state) => {
       state.sessionAlert = true;
     })
-    .addCase(updateSequence.fulfilled, (state, action) => {
-      console.log("state :", state);
-      console.log("action :", action);
+    .addCase(updateSession.rejected, (state) => {
+      state.sessionAlert = true;
+    })
+    .addCase(updateSession.fulfilled, (state) => {
+      state.sessionAlert = false;
     })
     .addCase(deleteSession.fulfilled, (state, action) => {
       if (state.sequence) {

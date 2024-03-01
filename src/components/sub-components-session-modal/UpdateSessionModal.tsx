@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../commons/redux";
 import { useRef, useState } from "react";
 import {
+  getOneSequence,
   updateSession,
 } from "../../../redux/reducers/sequences";
 import { openUpdateModal } from "../../../redux/reducers/session";
@@ -23,7 +24,9 @@ export default function UpdateSessionModal({ isOpen }: { isOpen: boolean }) {
     }
     formData.append("is_face_to_face", isPresentiel.toString());
     formData.append("is_group_work", isGroupe.toString());
-    dispatch(updateSession(formData));
+    dispatch(updateSession(formData)).then(() =>
+      dispatch(getOneSequence(Number(id)))
+    );
     formRef.current?.reset();
     dispatch(openUpdateModal(false));
   };
@@ -55,9 +58,6 @@ export default function UpdateSessionModal({ isOpen }: { isOpen: boolean }) {
             method="post"
             onSubmit={(event) => {
               handleUpdateSubmit(event);
-              setTimeout(() => {
-                window.location.href = `/scenarios/${id}`;
-              }, 100);
             }}
             ref={formRef}
           >

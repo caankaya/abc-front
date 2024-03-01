@@ -8,15 +8,20 @@ import { getOneSequence } from "../../redux/reducers/sequences";
 import { LeftBarChart } from "../components/LeftBarChart";
 import { RightBarChart } from "../components/RightBarChart";
 import PieChart from "../components/PieChart";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function DetailSequence() {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const user = useAppSelector((state) => state.user.logged);
   const cards = useAppSelector((state) => state.card.cards);
   const sessions = useAppSelector((state) => state.sequence.sequence);
   const sequenceId = Number(sessionStorage.getItem("sequence_id"));
 
   useEffect(() => {
+    if (!user) {
+      navigate("/");
+    }
     dispatch(getCards());
     dispatch(getOneSequence(sequenceId));
   }, []);

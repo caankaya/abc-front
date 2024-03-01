@@ -1,15 +1,20 @@
-import { Link } from "react-router-dom";
 import SequencesTables from "../components/SequencesTables";
 import { useAppDispatch, useAppSelector } from "../../commons/redux";
 import { useEffect } from "react";
 import { getAllSequences } from "../../redux/reducers/sequences";
 import { openModal } from "../../commons/functions";
+import { useNavigate } from "react-router-dom";
 
 export default function Sequences() {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const user = useAppSelector((state) => state.user.logged);
   const sequences = useAppSelector((state) => state.sequence.sequences);
 
   useEffect(() => {
+    if (!user) {
+      navigate("/");
+    }
     dispatch(getAllSequences());
   }, []);
 

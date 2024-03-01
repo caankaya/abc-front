@@ -1,6 +1,6 @@
 import { openModal } from "../../commons/functions";
 import { useAppDispatch } from "../../commons/redux";
-import { clearCardModal, getCard } from "../../redux/reducers/card";
+import { getCard } from "../../redux/reducers/card";
 import { ICards } from "../@types/cards";
 import CardModal from "./CardModal";
 

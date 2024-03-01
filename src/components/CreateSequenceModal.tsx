@@ -23,7 +23,7 @@ export default function CreateSequenceModal() {
 
   return (
     <dialog id="my_modal_6" className="modal modal-bottom sm:modal-middle">
-      <div className="modal-box bg-white">
+      <div className="modal-box bg-base-100">
         <form method="dialog">
           <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
             ✕
@@ -37,7 +37,7 @@ export default function CreateSequenceModal() {
         >
           <div className="mb-6">
             <label
-              className="block mb-2 text-sm font-medium text-gray-900 tablet:text-xs"
+              className="block mb-2 text-sm font-medium tablet:text-xs"
               htmlFor="name"
             >
               Nouveau scénario

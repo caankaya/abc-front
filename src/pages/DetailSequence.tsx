@@ -8,6 +8,7 @@ import { getOneSequence, getOneSession } from "../../redux/reducers/sequences";
 import { LeftBarChart } from "../components/LeftBarChart";
 import { RightBarChart } from "../components/RightBarChart";
 import PieChart from "../components/PieChart";
+import { Link } from "react-router-dom";
 
 export default function DetailSequence() {
   const dispatch = useAppDispatch();
@@ -36,8 +37,11 @@ export default function DetailSequence() {
           <RightBarChart sessions={sessions} />
         </div>
       ) : (
-        <div className="flex justify-evenly mt-10">
+        <div className="flex flex-col gap-y-5 items-center mt-10">
           <p>Vous n'avez pas de session</p>
+          <Link to={"/scenarios"} className="btn btn-sm">
+            Revenez au tableau des scénarios
+          </Link>
         </div>
       )}
     </div>

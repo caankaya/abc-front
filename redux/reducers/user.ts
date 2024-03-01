@@ -41,6 +41,7 @@ export const login = createAsyncThunk(
 );
 
 export const logout = createAction("user/logut");
+export const clearAlert = createAction("user/clearing connection alert");
 
 const userReducer = createReducer(initialState, (builder) => {
   builder
@@ -59,6 +60,9 @@ const userReducer = createReducer(initialState, (builder) => {
     .addCase(logout, (state) => {
       state.logged = false;
       sessionStorage.clear();
+    })
+    .addCase(clearAlert, (state) => {
+      state.connectionAlert = false;
     });
 });
 

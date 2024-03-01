@@ -1,5 +1,6 @@
 import {
   faArrowUpRightFromSquare,
+  faPen,
   faTrashCan,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -43,6 +44,15 @@ export default function SequencesTables({
                       }}
                     >
                       <FontAwesomeIcon icon={faTrashCan} />
+                    </button>
+                  </th>
+                  <th>
+                    <button
+                      onClick={() => {
+                        openModal("my_modal_7");
+                      }}
+                    >
+                      <FontAwesomeIcon icon={faPen} beat />
                     </button>
                   </th>
                   <td>{sequence.id}</td>

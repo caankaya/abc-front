@@ -28,9 +28,6 @@ export default function Sequences() {
           </>
         )}
         <div className="flex gap-5">
-          <Link to={"/"} className="btn btn-sm w-52 tablet:btn-xs">
-            Revenir à l'accueil
-          </Link>
           <button
             className="btn btn-sm w-52 tablet:btn-xs"
             onClick={() => {

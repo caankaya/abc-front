@@ -22,6 +22,7 @@ const initialState: SequencesState = {
 
 
 export const getOneSession = createAction("Sequence/Get one session");
+
 export const getAllSequences = createAsyncThunk(
   "/getAllSequences", // nom de l'action
   async () => {
@@ -58,6 +59,22 @@ export const createSequence = createAsyncThunk(
   }
 );
 
+export const updateSequence = createAsyncThunk(
+  "Sequence/The sequance has created", // nom de l'action
+  async (sequenceData: FormData) => {
+    const objData = Object.fromEntries(sequenceData);
+    const userId = {
+      user_id: Number(sessionStorage.getItem("id")),
+    };
+    Object.assign(objData, userId);
+    const { data } = await instance.put(
+      `/user/{{userId}}/sequence/{{sequenceId}}/`,
+      objData
+    );
+    return data;
+  }
+);
+
 export const deleteSequence = createAsyncThunk(
   "sequence/the sequence has deleted", // nom de l'action
   async (sequenceId: number) => {
@@ -67,7 +84,6 @@ export const deleteSequence = createAsyncThunk(
     return response.data;
   }
 );
-
 
 export const createSession = createAsyncThunk(
   "Session/The session has created",

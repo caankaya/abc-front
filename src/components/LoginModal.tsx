@@ -22,7 +22,7 @@ export default function LoginModal() {
       id="my_modal_5"
       className="modal modal-bottom tablet:modal-middle tablet:w-1/2 tablet:m-auto sm:modal-middle"
     >
-      <div className="modal-box bg-white">
+      <div className="modal-box bg-base-100">
         <form method="dialog">
           <button
             className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"

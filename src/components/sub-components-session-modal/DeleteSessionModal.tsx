@@ -1,6 +1,6 @@
-import { useAppDispatch } from "../../commons/redux";
-import { closeModal } from "../../commons/functions";
-import { deleteSession } from "../../redux/reducers/sequences";
+import { useAppDispatch } from "../../../commons/redux";
+import { closeModal } from "../../../commons/functions";
+import { deleteSession } from "../../../redux/reducers/sequences";
 
 function DeleteSessionModal() {
   const dispatch = useAppDispatch();

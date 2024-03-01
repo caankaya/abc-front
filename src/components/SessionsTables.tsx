@@ -1,9 +1,9 @@
 import { faPencil, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ISequence } from "../@types/sequence";
-import DeleteSessionModal from "./DeleteSessionModal";
+import DeleteSessionModal from "./sub-components-session-modal/DeleteSessionModal";
 import { openModal } from "../../commons/functions";
-import UpdateSessionModal from "./UpdateSessionModal";
+import UpdateSessionModal from "./sub-components-session-modal/UpdateSessionModal";
 import { useAppDispatch, useAppSelector } from "../../commons/redux";
 import { getOneSession } from "../../redux/reducers/sequences";
 import { openUpdateModal } from "../../redux/reducers/session";
@@ -15,9 +15,15 @@ export default function SessionsTables({
 }) {
   const dispatch = useAppDispatch();
   const isOpen = useAppSelector((state) => state.session.updateModal);
+  const sessionAlert = useAppSelector((state) => state.sequence.sessionAlert);
   return (
     sequence[0].sessions.length > 0 && (
       <div className="tablet:overflow-x-scroll">
+        {sessionAlert && (
+          <p className="bg-red-500 my-5 text-sm text-center w-1/4 m-auto text-white rounded-box h-10 flex items-center justify-center">
+            La session existe déjà. Entrez un autre nom de session
+          </p>
+        )}
         <table className="table w-full">
           <colgroup>
             <col style={{ width: "3%" }} />

@@ -1,6 +1,6 @@
 import { closeModal, openModal } from "../../commons/functions";
 import { useAppSelector } from "../../commons/redux";
-import CreateSessionModal from "./CreateSessionModal";
+import CreateSessionModal from "./sub-components-session-modal/CreateSessionModal";
 
 export default function CardModal() {
   const card = useAppSelector((state) => state.card.card);
@@ -8,7 +8,7 @@ export default function CardModal() {
 
   return (
     <>
-      <dialog id="my_modal_8" className="modal">
+      <dialog id="tool-modal" className="modal">
         <div
           className="modal-box w-2/6 max-w-5xl tablet:w-4/6"
           style={{ background: card?.get_activities.color }}
@@ -17,7 +17,7 @@ export default function CardModal() {
             <button
               className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-white"
               onClick={() => {
-                closeModal("my_modal_8");
+                closeModal("tool-modal");
               }}
             >
               ✕
@@ -38,7 +38,7 @@ export default function CardModal() {
               <p className="text-sm text-white font-semibold">
                 {tool.tool_category_name}
               </p>
-              <p>
+              <div>
                 {!isChecked &&
                   tool.tools
                     .filter((e) => e.level_id === 1)
@@ -49,8 +49,8 @@ export default function CardModal() {
                         type="button"
                         onClick={() => {
                           sessionStorage.setItem("tool_id", e.tool_id);
-                          openModal("my_modal_9");
-                          closeModal("my_modal_8");
+                          openModal("create-session");
+                          closeModal("tool-modal");
                         }}
                       >
                         {e.tool_name}
@@ -64,14 +64,14 @@ export default function CardModal() {
                       type="button"
                       onClick={() => {
                         sessionStorage.setItem("tool_id", e.tool_id);
-                        openModal("my_modal_9");
-                        closeModal("my_modal_8");
+                        openModal("create-session");
+                        closeModal("tool-modal");
                       }}
                     >
                       {e.tool_name}
                     </button>
                   ))}
-              </p>
+              </div>
             </div>
           ))}
         </div>

@@ -1,9 +1,12 @@
 import { useParams } from "react-router-dom";
-import { useAppDispatch } from "../../commons/redux";
+import { useAppDispatch } from "../../../commons/redux";
 import { useRef, useState } from "react";
-import { ICard } from "../@types/card";
-import { closeModal } from "../../commons/functions";
-import { createSession } from "../../redux/reducers/sequences";
+import { ICard } from "../../@types/card";
+import { closeModal } from "../../../commons/functions";
+import {
+  createSession,
+  getOneSequence,
+} from "../../../redux/reducers/sequences";
 
 export default function CreateSessionModal({ card }: { card: ICard }) {
   const dispatch = useAppDispatch();
@@ -15,20 +18,21 @@ export default function CreateSessionModal({ card }: { card: ICard }) {
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formElement = e.currentTarget;
-    console.log("formElement :", formElement);
     const formData = new FormData(formElement);
     formData.append("is_face_to_face", isPresentiel.toString());
     formData.append("is_group_work", isGroupe.toString());
     formData.append("card_id", card.get_activities.card_id.toString());
     formData.append("tool_id", sessionStorage.getItem("tool_id") as string);
     formData.append("sequence_id", id?.toString() as string);
-    dispatch(createSession(formData));
+    dispatch(createSession(formData)).then(() =>
+      dispatch(getOneSequence(Number(sessionStorage.getItem("sequence_id"))))
+    );
     formRef.current?.reset();
-    closeModal("my_modal_9");
+    closeModal("create-session");
   };
 
   return (
-    <dialog id="my_modal_9" className="modal modal-bottom sm:modal-middle">
+    <dialog id="create-session" className="modal modal-bottom sm:modal-middle">
       <div
         className="modal-box w-2/6 max-w-5xl tablet:w-4/6"
         style={{ backgroundColor: card.get_activities.color }}
@@ -38,7 +42,7 @@ export default function CreateSessionModal({ card }: { card: ICard }) {
             className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-white"
             onClick={() => {
               sessionStorage.removeItem("tool_id");
-              closeModal("my_modal_9");
+              closeModal("create-session");
               formRef.current?.reset();
             }}
           >
@@ -49,9 +53,6 @@ export default function CreateSessionModal({ card }: { card: ICard }) {
           method="post"
           onSubmit={(event) => {
             handleFormSubmit(event);
-            setTimeout(() => {
-              window.location.href = `/scenarios/${id}`;
-            }, 100);
           }}
           ref={formRef}
         >

@@ -1,8 +1,10 @@
 import { useParams } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../commons/redux";
+import { useAppDispatch, useAppSelector } from "../../../commons/redux";
 import { useRef, useState } from "react";
-import { getOneSequence, updateSession } from "../../redux/reducers/sequences";
-import { openUpdateModal } from "../../redux/reducers/session";
+import {
+  updateSession,
+} from "../../../redux/reducers/sequences";
+import { openUpdateModal } from "../../../redux/reducers/session";
 
 export default function UpdateSessionModal({ isOpen }: { isOpen: boolean }) {
   const dispatch = useAppDispatch();

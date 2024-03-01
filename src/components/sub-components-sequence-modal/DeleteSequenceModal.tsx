@@ -1,10 +1,10 @@
 import React from "react";
-import { useAppDispatch } from "../../commons/redux";
+import { useAppDispatch } from "../../../commons/redux";
 import {
   deleteSequence,
   getAllSequences,
-} from "../../redux/reducers/sequences";
-import { closeModal } from "../../commons/functions";
+} from "../../../redux/reducers/sequences";
+import { closeModal } from "../../../commons/functions";
 
 function DeleteSequenceModal() {
   const dispatch = useAppDispatch();

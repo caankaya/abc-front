@@ -11,15 +11,21 @@ interface SequencesState {
   sequences: ISequences[] | null;
   sequence: ISequence[] | null;
   session: Session[] | null;
+  sequenceAlert: boolean;
+  sessionAlert: boolean;
 }
 
 const initialState: SequencesState = {
   sequences: null,
   sequence: null,
   session: null,
+  sequenceAlert: false,
+  sessionAlert: false,
 };
 
 export const getOneSession = createAction("Sequence/Get one session");
+export const clearSequenceAlert = createAction("Clearing sequence alert");
+export const clearSessionAlert = createAction("Clearing session alert");
 
 export const getAllSequences = createAsyncThunk(
   "/getAllSequences", // nom de l'action
@@ -129,6 +135,12 @@ const sequencesReducer = createReducer(initialState, (builder) => {
             sequence.id !== Number(sessionStorage.getItem("sequenceId"))
         );
       }
+    })
+    .addCase(createSession.fulfilled, (state) => {
+      state.sessionAlert = false;
+    })
+    .addCase(createSession.rejected, (state) => {
+      state.sessionAlert = true;
     })
     .addCase(updateSequence.fulfilled, (state, action) => {
       console.log("state :", state);

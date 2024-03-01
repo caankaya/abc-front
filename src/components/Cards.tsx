@@ -25,7 +25,7 @@ export default function Cards({ cards }: { cards: ICards[] }) {
                   className="btn btn-sm normal-case tablet:btn-xs"
                   onClick={() => {
                     dispatch(getCard(card.id));
-                    openModal("my_modal_8");
+                    openModal("tool-modal");
                   }}
                 >
                   Activités

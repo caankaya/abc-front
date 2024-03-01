@@ -24,6 +24,7 @@ export default function DetailSequence() {
   return (
     <div className="DetailSequence mb-20">
       <LevelButton />
+
       {cards && cards.length !== 0 && <Cards cards={cards} />}
       {sessions && sessions.length !== 0 && (
         <SessionsTables sequence={sessions} />
@@ -38,7 +39,7 @@ export default function DetailSequence() {
         </div>
       ) : (
         <div className="flex flex-col gap-y-5 items-center mt-10">
-          <p>Vous n'avez pas de session</p>
+          <p className="text-sm">Vous n'avez pas de session</p>
           <Link to={"/scenarios"} className="btn btn-sm">
             Revenez au tableau des scénarios
           </Link>

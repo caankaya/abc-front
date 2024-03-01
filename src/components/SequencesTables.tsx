@@ -13,9 +13,9 @@ import {
 } from "../../redux/reducers/sequences";
 import { ISequences } from "../@types/sequences";
 import { useEffect } from "react";
-import DeleteSequenceModal from "./DeleteSequenceModal";
+import DeleteSequenceModal from "./sub-components-sequence-modal/DeleteSequenceModal";
 import { openModal } from "../../commons/functions";
-import UpdateSequenceModal from "./UpdateSequenceModal";
+import UpdateSequenceModal from "./sub-components-sequence-modal/UpdateSequenceModal";
 
 export default function SequencesTables({
   sequences,

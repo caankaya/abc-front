@@ -1,48 +1,37 @@
 import { useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../commons/redux";
-import { useEffect, useRef, useState } from "react";
-import { closeModal } from "../../commons/functions";
-import {
-  clearSessionArray,
-  createSession,
-} from "../../redux/reducers/sequences";
+import { useRef, useState } from "react";
+import { getOneSequence, updateSession } from "../../redux/reducers/sequences";
+import { openUpdateModal } from "../../redux/reducers/session";
 
-export default function UpdateSessionModal() {
+export default function UpdateSessionModal({ isOpen }: { isOpen: boolean }) {
   const dispatch = useAppDispatch();
-  const session = useAppSelector((state) => state.sequence.session);
   const { id } = useParams();
+  const session = useAppSelector((state) => state.sequence.session);
   const [isPresentiel, setIsPresentiel] = useState(true);
   const [isGroupe, setIsGroupe] = useState(true);
   const formRef = useRef<HTMLFormElement>(null);
-  const modalRef = useRef<HTMLDialogElement>(null);
 
   const handleUpdateSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formElement = e.currentTarget;
-    console.log("formElement :", formElement);
     const formData = new FormData(formElement);
+    if (session) {
+      formData.append("tool_id", session[0].tool_id.toString());
+    }
     formData.append("is_face_to_face", isPresentiel.toString());
     formData.append("is_group_work", isGroupe.toString());
-    formData.append("card_id", "#f0f");
-    formData.append("tool_id", sessionStorage.getItem("tool_id") as string);
-    formData.append("sequence_id", id?.toString() as string);
-    dispatch(createSession(formData));
+    dispatch(updateSession(formData));
     formRef.current?.reset();
-    closeModal("my_modal_9");
+    dispatch(openUpdateModal(false));
   };
-
-  useEffect(() => {
-    if (modalRef.current !== null) {
-      formRef.current && formRef.current.reset();
-    }
-  }, [formRef]);
 
   return (
     session && (
       <dialog
         id="update-session"
         className="modal modal-bottom sm:modal-middle"
-        ref={modalRef}
+        open={isOpen}
       >
         <div
           className="modal-box w-2/6 max-w-5xl tablet:w-4/6"
@@ -53,7 +42,7 @@ export default function UpdateSessionModal() {
               className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-white"
               onClick={() => {
                 sessionStorage.removeItem("tool_id");
-                closeModal("update-session");
+                dispatch(openUpdateModal(false));
                 formRef.current?.reset();
               }}
             >

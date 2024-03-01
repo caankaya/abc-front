@@ -1,24 +1,31 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
-import { Session } from "../../src/@types/sequence";
 
 interface SessionState {
   levelButton: boolean;
-  session: Session | null;
+  updateModal: boolean;
 }
 
 const initialState: SessionState = {
   levelButton: false,
-  session: null,
+  updateModal: false,
 };
 
 export const toggleLevelButton = createAction<boolean>(
   "session/Level button toggled"
 );
 
+export const openUpdateModal = createAction<boolean>(
+  "The update modal opening"
+);
+
 const sessionReducer = createReducer(initialState, (builder) => {
-  builder.addCase(toggleLevelButton, (state, action) => {
-    state.levelButton = action.payload;
-  });
+  builder
+    .addCase(toggleLevelButton, (state, action) => {
+      state.levelButton = action.payload;
+    })
+    .addCase(openUpdateModal, (state, action) => {
+      state.updateModal = action.payload;
+    });
 });
 
 export default sessionReducer;

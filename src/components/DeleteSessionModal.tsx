@@ -16,9 +16,9 @@ function DeleteSessionModal() {
             className="btn btn-error btn-sm text-white tablet:text-xs"
             onClick={() => {
               dispatch(
-                deleteSession(Number(localStorage.getItem("sessionId")))
+                deleteSession(Number(sessionStorage.getItem("sessionId")))
               );
-              localStorage.removeItem("sessionId");
+              sessionStorage.removeItem("sessionId");
 
               closeModal("delete-session");
             }}

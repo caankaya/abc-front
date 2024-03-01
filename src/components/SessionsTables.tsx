@@ -5,10 +5,8 @@ import DeleteSessionModal from "./DeleteSessionModal";
 import { openModal } from "../../commons/functions";
 import UpdateSessionModal from "./UpdateSessionModal";
 import { useAppDispatch, useAppSelector } from "../../commons/redux";
-import {
-  clearSessionArray,
-  getOneSession,
-} from "../../redux/reducers/sequences";
+import { getOneSession } from "../../redux/reducers/sequences";
+import { openUpdateModal } from "../../redux/reducers/session";
 
 export default function SessionsTables({
   sequence,
@@ -16,6 +14,7 @@ export default function SessionsTables({
   sequence: ISequence[];
 }) {
   const dispatch = useAppDispatch();
+  const isOpen = useAppSelector((state) => state.session.updateModal);
   return (
     <div className="tablet:overflow-x-scroll">
       <table className="table w-full">
@@ -53,7 +52,7 @@ export default function SessionsTables({
                   <button
                     className="btn bg-transparent border-none"
                     onClick={() => {
-                      localStorage.setItem(
+                      sessionStorage.setItem(
                         "sessionId",
                         session.session_id.toString()
                       );
@@ -67,13 +66,13 @@ export default function SessionsTables({
                   <button
                     className="btn bg-transparent border-none"
                     onClick={() => {
-                      localStorage.setItem(
+                      sessionStorage.setItem(
                         "sessionId",
                         session.session_id.toString()
                       );
                       dispatch(getOneSession());
                       setTimeout(() => {
-                        openModal("update-session");
+                        dispatch(openUpdateModal(true));
                       }, 100);
                     }}
                   >
@@ -115,12 +114,12 @@ export default function SessionsTables({
                 </td>
                 <td>
                   <DeleteSessionModal />
-                  <UpdateSessionModal />
                 </td>
               </tr>
             ))}
         </tbody>
       </table>
+      <UpdateSessionModal isOpen={isOpen} />
     </div>
   );
 }

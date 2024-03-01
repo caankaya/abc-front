@@ -19,8 +19,9 @@ const initialState: SequencesState = {
   session: null,
 };
 
-export const clearSessionArray = createAction("Clearing session array");
 
+
+export const getOneSession = createAction("Sequence/Get one session");
 export const getAllSequences = createAsyncThunk(
   "/getAllSequences", // nom de l'action
   async () => {
@@ -67,7 +68,6 @@ export const deleteSequence = createAsyncThunk(
   }
 );
 
-export const getOneSession = createAction("Sequence/Get one session");
 
 export const createSession = createAsyncThunk(
   "Session/The session has created",
@@ -96,7 +96,7 @@ export const updateSession = createAsyncThunk(
   async (formData: FormData) => {
     const objData = Object.fromEntries(formData);
     const response = await instance.put(
-      `/user/${sessionStorage.getItem("id")}/session`,
+      `/user/${sessionStorage.getItem("id")}/session/${sessionStorage.getItem("sessionId")}`,
       objData
     );
     return response.data;
@@ -130,7 +130,7 @@ const sequencesReducer = createReducer(initialState, (builder) => {
         const foundSessions = state.sequence.map((seq) =>
           seq?.sessions.find(
             (session) =>
-              session.session_id === Number(localStorage.getItem("sessionId"))
+              session.session_id === Number(sessionStorage.getItem("sessionId"))
           )
         );
         state.session = foundSessions.filter(
@@ -138,9 +138,6 @@ const sequencesReducer = createReducer(initialState, (builder) => {
         ) as Session[];
       }
     })
-    .addCase(clearSessionArray, (state) => {
-      state.session = null;
-    });
 });
 
 export default sequencesReducer;
